@@ -1,0 +1,595 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		D58DBEAC17D45D0400763E0E /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D58DBEA517D45D0400763E0E /* Default-568h@2x.png */; };
+		D58DBEAD17D45D0400763E0E /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = D58DBEA617D45D0400763E0E /* Default.png */; };
+		D58DBEAE17D45D0400763E0E /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D58DBEA717D45D0400763E0E /* Default@2x.png */; };
+		D58DBEAF17D45D0400763E0E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D58DBEA817D45D0400763E0E /* main.m */; };
+		D58DBEB217D45D7800763E0E /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D58DBEA517D45D0400763E0E /* Default-568h@2x.png */; };
+		D58DBEB317D45D7800763E0E /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = D58DBEA617D45D0400763E0E /* Default.png */; };
+		D58DBEB417D45D7800763E0E /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D58DBEA717D45D0400763E0E /* Default@2x.png */; };
+		D58DBEBC17D45F2200763E0E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D5AF9FE117D3C79C009A41F4 /* InfoPlist.strings */; };
+		D58DBEBF17D45FA300763E0E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D58DBEA817D45D0400763E0E /* main.m */; };
+		D5AF9FBB17D3C79C009A41F4 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D5AF9FBA17D3C79C009A41F4 /* UIKit.framework */; };
+		D5AF9FBD17D3C79C009A41F4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D5AF9FBC17D3C79C009A41F4 /* Foundation.framework */; };
+		D5AF9FBF17D3C79C009A41F4 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D5AF9FBE17D3C79C009A41F4 /* CoreGraphics.framework */; };
+		D5AF9FD917D3C79C009A41F4 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D5AF9FD817D3C79C009A41F4 /* SenTestingKit.framework */; };
+		D5AF9FDA17D3C79C009A41F4 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D5AF9FBA17D3C79C009A41F4 /* UIKit.framework */; };
+		D5AF9FDB17D3C79C009A41F4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D5AF9FBC17D3C79C009A41F4 /* Foundation.framework */; };
+		D5AF9FE317D3C79C009A41F4 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D5AF9FE117D3C79C009A41F4 /* InfoPlist.strings */; };
+		D5AF9FE617D3C79C009A41F4 /* RubrikCubeSolverTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D5AF9FE517D3C79C009A41F4 /* RubrikCubeSolverTests.m */; };
+		D5AF9FF417D3C916009A41F4 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D5AF9FF317D3C916009A41F4 /* GLKit.framework */; };
+		D5AF9FF617D3C92A009A41F4 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D5AF9FF517D3C92A009A41F4 /* OpenGLES.framework */; };
+		D5AF9FFE17D3CABD009A41F4 /* RCAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D5AF9FFC17D3CABD009A41F4 /* RCAppDelegate.m */; };
+		D5AFA00217D3CAE7009A41F4 /* RCViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D5AFA00117D3CAE7009A41F4 /* RCViewController.m */; };
+		D5AFA00517D3CB5A009A41F4 /* RCViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = D5AFA00417D3CB5A009A41F4 /* RCViewController_iPhone.xib */; };
+		D5AFA00717D3D010009A41F4 /* RCViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = D5AFA00617D3D010009A41F4 /* RCViewController_iPad.xib */; };
+		D5AFA00F17D3DC11009A41F4 /* RCCubeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D5AFA00E17D3DC11009A41F4 /* RCCubeManager.m */; };
+		D5AFA01217D3E4F2009A41F4 /* RCCubeMoveManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D5AFA01117D3E4F2009A41F4 /* RCCubeMoveManager.m */; };
+		D5AFA01517D3E527009A41F4 /* RCCubeService.m in Sources */ = {isa = PBXBuildFile; fileRef = D5AFA01417D3E527009A41F4 /* RCCubeService.m */; };
+		D5AFA01817D3E552009A41F4 /* RCCubeRotationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D5AFA01717D3E552009A41F4 /* RCCubeRotationManager.m */; };
+		D5AFA01B17D3E569009A41F4 /* RCCubeTouchManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D5AFA01A17D3E569009A41F4 /* RCCubeTouchManager.m */; };
+		D5AFA01E17D3E57D009A41F4 /* RCCubeDrawManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D5AFA01D17D3E57D009A41F4 /* RCCubeDrawManager.m */; };
+		D5AFA02317D3F3E3009A41F4 /* RCBlockService.m in Sources */ = {isa = PBXBuildFile; fileRef = D5AFA02217D3F3E3009A41F4 /* RCBlockService.m */; };
+		D5AFA03217D4389E009A41F4 /* Shader.fsh in Resources */ = {isa = PBXBuildFile; fileRef = D5AFA02C17D40488009A41F4 /* Shader.fsh */; };
+		D5AFA03317D4389E009A41F4 /* Shader.vsh in Resources */ = {isa = PBXBuildFile; fileRef = D5AFA02D17D40488009A41F4 /* Shader.vsh */; };
+		D5AFA03617D4396A009A41F4 /* RCViewController+GLDraw.m in Sources */ = {isa = PBXBuildFile; fileRef = D5AFA03517D4396A009A41F4 /* RCViewController+GLDraw.m */; };
+		D5AFA03717D439C9009A41F4 /* RCViewControllerGLSetup.m in Sources */ = {isa = PBXBuildFile; fileRef = D5AFA02F17D42F9D009A41F4 /* RCViewControllerGLSetup.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		D5AF9FDC17D3C79C009A41F4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D5AF9FAD17D3C79C009A41F4 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D5AF9FB517D3C79C009A41F4;
+			remoteInfo = RubrikCubeSolver;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		D58DBEA417D4448600763E0E /* RCCubeData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = RCCubeData.h; path = RCViewController/RCCubeData.h; sourceTree = "<group>"; };
+		D58DBEA517D45D0400763E0E /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "SupportingFiles/Default-568h@2x.png"; sourceTree = "<group>"; };
+		D58DBEA617D45D0400763E0E /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = SupportingFiles/Default.png; sourceTree = "<group>"; };
+		D58DBEA717D45D0400763E0E /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default@2x.png"; path = "SupportingFiles/Default@2x.png"; sourceTree = "<group>"; };
+		D58DBEA817D45D0400763E0E /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = SupportingFiles/main.m; sourceTree = "<group>"; };
+		D58DBEA917D45D0400763E0E /* RCTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RCTypes.h; path = SupportingFiles/RCTypes.h; sourceTree = "<group>"; };
+		D58DBEB917D45E9C00763E0E /* RubrikCubeSolver-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "RubrikCubeSolver-Info.plist"; sourceTree = "<group>"; };
+		D58DBEBE17D45F8100763E0E /* RubrikCubeSolver-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RubrikCubeSolver-Prefix.pch"; sourceTree = "<group>"; };
+		D5AF9FB617D3C79C009A41F4 /* RubrikCubeSolver.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RubrikCubeSolver.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D5AF9FBA17D3C79C009A41F4 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		D5AF9FBC17D3C79C009A41F4 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		D5AF9FBE17D3C79C009A41F4 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		D5AF9FC417D3C79C009A41F4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		D5AF9FD717D3C79C009A41F4 /* RubrikCubeSolverTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RubrikCubeSolverTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		D5AF9FD817D3C79C009A41F4 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
+		D5AF9FE017D3C79C009A41F4 /* RubrikCubeSolverTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "RubrikCubeSolverTests-Info.plist"; sourceTree = "<group>"; };
+		D5AF9FE217D3C79C009A41F4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		D5AF9FE417D3C79C009A41F4 /* RubrikCubeSolverTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RubrikCubeSolverTests.h; sourceTree = "<group>"; };
+		D5AF9FE517D3C79C009A41F4 /* RubrikCubeSolverTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RubrikCubeSolverTests.m; sourceTree = "<group>"; };
+		D5AF9FF317D3C916009A41F4 /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
+		D5AF9FF517D3C92A009A41F4 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
+		D5AF9FFC17D3CABD009A41F4 /* RCAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RCAppDelegate.m; path = RCAppDelegate/RCAppDelegate.m; sourceTree = "<group>"; };
+		D5AF9FFD17D3CABD009A41F4 /* RCAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RCAppDelegate.h; path = RCAppDelegate/RCAppDelegate.h; sourceTree = "<group>"; };
+		D5AFA00017D3CAE7009A41F4 /* RCViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RCViewController.h; path = RCViewController/RCViewController.h; sourceTree = "<group>"; };
+		D5AFA00117D3CAE7009A41F4 /* RCViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RCViewController.m; path = RCViewController/RCViewController.m; sourceTree = "<group>"; };
+		D5AFA00417D3CB5A009A41F4 /* RCViewController_iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = RCViewController_iPhone.xib; path = NibFiles/RCViewController_iPhone.xib; sourceTree = "<group>"; };
+		D5AFA00617D3D010009A41F4 /* RCViewController_iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = RCViewController_iPad.xib; path = NibFiles/RCViewController_iPad.xib; sourceTree = "<group>"; };
+		D5AFA00B17D3D578009A41F4 /* RCDebugMacro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RCDebugMacro.h; path = RCDebugLog/RCDebugMacro.h; sourceTree = "<group>"; };
+		D5AFA00D17D3DC11009A41F4 /* RCCubeManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RCCubeManager.h; path = RCCubeManager/RCCubeManager.h; sourceTree = "<group>"; };
+		D5AFA00E17D3DC11009A41F4 /* RCCubeManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RCCubeManager.m; path = RCCubeManager/RCCubeManager.m; sourceTree = "<group>"; };
+		D5AFA01017D3E4F2009A41F4 /* RCCubeMoveManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RCCubeMoveManager.h; path = RCCubeManager/RCCubeMoveManager.h; sourceTree = "<group>"; };
+		D5AFA01117D3E4F2009A41F4 /* RCCubeMoveManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RCCubeMoveManager.m; path = RCCubeManager/RCCubeMoveManager.m; sourceTree = "<group>"; };
+		D5AFA01317D3E527009A41F4 /* RCCubeService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RCCubeService.h; path = RCCubeManager/RCCubeService.h; sourceTree = "<group>"; };
+		D5AFA01417D3E527009A41F4 /* RCCubeService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RCCubeService.m; path = RCCubeManager/RCCubeService.m; sourceTree = "<group>"; };
+		D5AFA01617D3E552009A41F4 /* RCCubeRotationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RCCubeRotationManager.h; path = RCCubeManager/RCCubeRotationManager.h; sourceTree = "<group>"; };
+		D5AFA01717D3E552009A41F4 /* RCCubeRotationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RCCubeRotationManager.m; path = RCCubeManager/RCCubeRotationManager.m; sourceTree = "<group>"; };
+		D5AFA01917D3E569009A41F4 /* RCCubeTouchManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RCCubeTouchManager.h; path = RCCubeManager/RCCubeTouchManager.h; sourceTree = "<group>"; };
+		D5AFA01A17D3E569009A41F4 /* RCCubeTouchManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RCCubeTouchManager.m; path = RCCubeManager/RCCubeTouchManager.m; sourceTree = "<group>"; };
+		D5AFA01C17D3E57D009A41F4 /* RCCubeDrawManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RCCubeDrawManager.h; path = RCCubeManager/RCCubeDrawManager.h; sourceTree = "<group>"; };
+		D5AFA01D17D3E57D009A41F4 /* RCCubeDrawManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RCCubeDrawManager.m; path = RCCubeManager/RCCubeDrawManager.m; sourceTree = "<group>"; };
+		D5AFA01F17D3EC07009A41F4 /* RCBlock.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = RCBlock.h; path = RCCubeManager/RCBlock.h; sourceTree = "<group>"; };
+		D5AFA02117D3F3E3009A41F4 /* RCBlockService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RCBlockService.h; path = RCCubeManager/RCBlockService.h; sourceTree = "<group>"; };
+		D5AFA02217D3F3E3009A41F4 /* RCBlockService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RCBlockService.m; path = RCCubeManager/RCBlockService.m; sourceTree = "<group>"; };
+		D5AFA02C17D40488009A41F4 /* Shader.fsh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; name = Shader.fsh; path = Shaders/Shader.fsh; sourceTree = "<group>"; };
+		D5AFA02D17D40488009A41F4 /* Shader.vsh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; name = Shader.vsh; path = Shaders/Shader.vsh; sourceTree = "<group>"; };
+		D5AFA02F17D42F9D009A41F4 /* RCViewControllerGLSetup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RCViewControllerGLSetup.m; path = RCViewController/RCViewControllerGLSetup.m; sourceTree = "<group>"; };
+		D5AFA03417D4396A009A41F4 /* RCViewController+GLDraw.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "RCViewController+GLDraw.h"; path = "RCViewController/RCViewController+GLDraw.h"; sourceTree = "<group>"; };
+		D5AFA03517D4396A009A41F4 /* RCViewController+GLDraw.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "RCViewController+GLDraw.m"; path = "RCViewController/RCViewController+GLDraw.m"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		D5AF9FB317D3C79C009A41F4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D5AF9FF617D3C92A009A41F4 /* OpenGLES.framework in Frameworks */,
+				D5AF9FF417D3C916009A41F4 /* GLKit.framework in Frameworks */,
+				D5AF9FBB17D3C79C009A41F4 /* UIKit.framework in Frameworks */,
+				D5AF9FBD17D3C79C009A41F4 /* Foundation.framework in Frameworks */,
+				D5AF9FBF17D3C79C009A41F4 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D5AF9FD317D3C79C009A41F4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D5AF9FD917D3C79C009A41F4 /* SenTestingKit.framework in Frameworks */,
+				D5AF9FDA17D3C79C009A41F4 /* UIKit.framework in Frameworks */,
+				D5AF9FDB17D3C79C009A41F4 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		D5AF9FAB17D3C79C009A41F4 = {
+			isa = PBXGroup;
+			children = (
+				D5AF9FF517D3C92A009A41F4 /* OpenGLES.framework */,
+				D5AF9FF317D3C916009A41F4 /* GLKit.framework */,
+				D5AF9FC017D3C79C009A41F4 /* RubrikCubeSolver */,
+				D5AF9FDE17D3C79C009A41F4 /* RubrikCubeSolverTests */,
+				D5AF9FB917D3C79C009A41F4 /* Frameworks */,
+				D5AF9FB717D3C79C009A41F4 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		D5AF9FB717D3C79C009A41F4 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D5AF9FB617D3C79C009A41F4 /* RubrikCubeSolver.app */,
+				D5AF9FD717D3C79C009A41F4 /* RubrikCubeSolverTests.octest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		D5AF9FB917D3C79C009A41F4 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D5AF9FBA17D3C79C009A41F4 /* UIKit.framework */,
+				D5AF9FBC17D3C79C009A41F4 /* Foundation.framework */,
+				D5AF9FBE17D3C79C009A41F4 /* CoreGraphics.framework */,
+				D5AF9FD817D3C79C009A41F4 /* SenTestingKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D5AF9FC017D3C79C009A41F4 /* RubrikCubeSolver */ = {
+			isa = PBXGroup;
+			children = (
+				D5AFA03117D43879009A41F4 /* Shaders */,
+				D5AFA00C17D3DBD8009A41F4 /* RCCubeManager */,
+				D5AFA00817D3D316009A41F4 /* RCDebugLog */,
+				D5AFA00317D3CB16009A41F4 /* NibFiles */,
+				D5AF9FFF17D3CAC4009A41F4 /* RCAppDelegate */,
+				D5AF9FF717D3C950009A41F4 /* RCViewController */,
+				D5AF9FC117D3C79C009A41F4 /* Supporting Files */,
+			);
+			path = RubrikCubeSolver;
+			sourceTree = "<group>";
+		};
+		D5AF9FC117D3C79C009A41F4 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				D58DBEBE17D45F8100763E0E /* RubrikCubeSolver-Prefix.pch */,
+				D58DBEB917D45E9C00763E0E /* RubrikCubeSolver-Info.plist */,
+				D58DBEA517D45D0400763E0E /* Default-568h@2x.png */,
+				D58DBEA617D45D0400763E0E /* Default.png */,
+				D58DBEA717D45D0400763E0E /* Default@2x.png */,
+				D58DBEA817D45D0400763E0E /* main.m */,
+				D58DBEA917D45D0400763E0E /* RCTypes.h */,
+				D5AF9FC317D3C79C009A41F4 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		D5AF9FDE17D3C79C009A41F4 /* RubrikCubeSolverTests */ = {
+			isa = PBXGroup;
+			children = (
+				D5AF9FE417D3C79C009A41F4 /* RubrikCubeSolverTests.h */,
+				D5AF9FE517D3C79C009A41F4 /* RubrikCubeSolverTests.m */,
+				D5AF9FDF17D3C79C009A41F4 /* Supporting Files */,
+			);
+			path = RubrikCubeSolverTests;
+			sourceTree = "<group>";
+		};
+		D5AF9FDF17D3C79C009A41F4 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				D5AF9FE017D3C79C009A41F4 /* RubrikCubeSolverTests-Info.plist */,
+				D5AF9FE117D3C79C009A41F4 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		D5AF9FF717D3C950009A41F4 /* RCViewController */ = {
+			isa = PBXGroup;
+			children = (
+				D5AFA00017D3CAE7009A41F4 /* RCViewController.h */,
+				D58DBEA417D4448600763E0E /* RCCubeData.h */,
+				D5AFA00117D3CAE7009A41F4 /* RCViewController.m */,
+				D5AFA02F17D42F9D009A41F4 /* RCViewControllerGLSetup.m */,
+				D5AFA03417D4396A009A41F4 /* RCViewController+GLDraw.h */,
+				D5AFA03517D4396A009A41F4 /* RCViewController+GLDraw.m */,
+			);
+			name = RCViewController;
+			sourceTree = "<group>";
+		};
+		D5AF9FFF17D3CAC4009A41F4 /* RCAppDelegate */ = {
+			isa = PBXGroup;
+			children = (
+				D5AF9FFC17D3CABD009A41F4 /* RCAppDelegate.m */,
+				D5AF9FFD17D3CABD009A41F4 /* RCAppDelegate.h */,
+			);
+			name = RCAppDelegate;
+			sourceTree = "<group>";
+		};
+		D5AFA00317D3CB16009A41F4 /* NibFiles */ = {
+			isa = PBXGroup;
+			children = (
+				D5AFA00417D3CB5A009A41F4 /* RCViewController_iPhone.xib */,
+				D5AFA00617D3D010009A41F4 /* RCViewController_iPad.xib */,
+			);
+			name = NibFiles;
+			sourceTree = "<group>";
+		};
+		D5AFA00817D3D316009A41F4 /* RCDebugLog */ = {
+			isa = PBXGroup;
+			children = (
+				D5AFA00B17D3D578009A41F4 /* RCDebugMacro.h */,
+			);
+			name = RCDebugLog;
+			sourceTree = "<group>";
+		};
+		D5AFA00C17D3DBD8009A41F4 /* RCCubeManager */ = {
+			isa = PBXGroup;
+			children = (
+				D5AFA00D17D3DC11009A41F4 /* RCCubeManager.h */,
+				D5AFA00E17D3DC11009A41F4 /* RCCubeManager.m */,
+				D5AFA01317D3E527009A41F4 /* RCCubeService.h */,
+				D5AFA01417D3E527009A41F4 /* RCCubeService.m */,
+				D5AFA01F17D3EC07009A41F4 /* RCBlock.h */,
+				D5AFA01017D3E4F2009A41F4 /* RCCubeMoveManager.h */,
+				D5AFA01117D3E4F2009A41F4 /* RCCubeMoveManager.m */,
+				D5AFA01617D3E552009A41F4 /* RCCubeRotationManager.h */,
+				D5AFA01717D3E552009A41F4 /* RCCubeRotationManager.m */,
+				D5AFA01917D3E569009A41F4 /* RCCubeTouchManager.h */,
+				D5AFA01A17D3E569009A41F4 /* RCCubeTouchManager.m */,
+				D5AFA01C17D3E57D009A41F4 /* RCCubeDrawManager.h */,
+				D5AFA01D17D3E57D009A41F4 /* RCCubeDrawManager.m */,
+				D5AFA02117D3F3E3009A41F4 /* RCBlockService.h */,
+				D5AFA02217D3F3E3009A41F4 /* RCBlockService.m */,
+			);
+			name = RCCubeManager;
+			sourceTree = "<group>";
+		};
+		D5AFA03117D43879009A41F4 /* Shaders */ = {
+			isa = PBXGroup;
+			children = (
+				D5AFA02C17D40488009A41F4 /* Shader.fsh */,
+				D5AFA02D17D40488009A41F4 /* Shader.vsh */,
+			);
+			name = Shaders;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		D5AF9FB517D3C79C009A41F4 /* RubrikCubeSolver */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D5AF9FE917D3C79C009A41F4 /* Build configuration list for PBXNativeTarget "RubrikCubeSolver" */;
+			buildPhases = (
+				D5AF9FB217D3C79C009A41F4 /* Sources */,
+				D5AF9FB317D3C79C009A41F4 /* Frameworks */,
+				D5AF9FB417D3C79C009A41F4 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = RubrikCubeSolver;
+			productName = RubrikCubeSolver;
+			productReference = D5AF9FB617D3C79C009A41F4 /* RubrikCubeSolver.app */;
+			productType = "com.apple.product-type.application";
+		};
+		D5AF9FD617D3C79C009A41F4 /* RubrikCubeSolverTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D5AF9FEC17D3C79C009A41F4 /* Build configuration list for PBXNativeTarget "RubrikCubeSolverTests" */;
+			buildPhases = (
+				D5AF9FD217D3C79C009A41F4 /* Sources */,
+				D5AF9FD317D3C79C009A41F4 /* Frameworks */,
+				D5AF9FD417D3C79C009A41F4 /* Resources */,
+				D5AF9FD517D3C79C009A41F4 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D5AF9FDD17D3C79C009A41F4 /* PBXTargetDependency */,
+			);
+			name = RubrikCubeSolverTests;
+			productName = RubrikCubeSolverTests;
+			productReference = D5AF9FD717D3C79C009A41F4 /* RubrikCubeSolverTests.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		D5AF9FAD17D3C79C009A41F4 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = RC;
+				LastUpgradeCheck = 0450;
+				ORGANIZATIONNAME = "刘文景";
+			};
+			buildConfigurationList = D5AF9FB017D3C79C009A41F4 /* Build configuration list for PBXProject "RubrikCubeSolver" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = D5AF9FAB17D3C79C009A41F4;
+			productRefGroup = D5AF9FB717D3C79C009A41F4 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				D5AF9FB517D3C79C009A41F4 /* RubrikCubeSolver */,
+				D5AF9FD617D3C79C009A41F4 /* RubrikCubeSolverTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		D5AF9FB417D3C79C009A41F4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D58DBEBC17D45F2200763E0E /* InfoPlist.strings in Resources */,
+				D58DBEB217D45D7800763E0E /* Default-568h@2x.png in Resources */,
+				D58DBEB317D45D7800763E0E /* Default.png in Resources */,
+				D58DBEB417D45D7800763E0E /* Default@2x.png in Resources */,
+				D5AFA03217D4389E009A41F4 /* Shader.fsh in Resources */,
+				D5AFA03317D4389E009A41F4 /* Shader.vsh in Resources */,
+				D5AFA00517D3CB5A009A41F4 /* RCViewController_iPhone.xib in Resources */,
+				D5AFA00717D3D010009A41F4 /* RCViewController_iPad.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D5AF9FD417D3C79C009A41F4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D5AF9FE317D3C79C009A41F4 /* InfoPlist.strings in Resources */,
+				D58DBEAC17D45D0400763E0E /* Default-568h@2x.png in Resources */,
+				D58DBEAD17D45D0400763E0E /* Default.png in Resources */,
+				D58DBEAE17D45D0400763E0E /* Default@2x.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		D5AF9FD517D3C79C009A41F4 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		D5AF9FB217D3C79C009A41F4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D58DBEBF17D45FA300763E0E /* main.m in Sources */,
+				D5AF9FFE17D3CABD009A41F4 /* RCAppDelegate.m in Sources */,
+				D5AFA00217D3CAE7009A41F4 /* RCViewController.m in Sources */,
+				D5AFA00F17D3DC11009A41F4 /* RCCubeManager.m in Sources */,
+				D5AFA01217D3E4F2009A41F4 /* RCCubeMoveManager.m in Sources */,
+				D5AFA01517D3E527009A41F4 /* RCCubeService.m in Sources */,
+				D5AFA01817D3E552009A41F4 /* RCCubeRotationManager.m in Sources */,
+				D5AFA01B17D3E569009A41F4 /* RCCubeTouchManager.m in Sources */,
+				D5AFA01E17D3E57D009A41F4 /* RCCubeDrawManager.m in Sources */,
+				D5AFA02317D3F3E3009A41F4 /* RCBlockService.m in Sources */,
+				D5AFA03717D439C9009A41F4 /* RCViewControllerGLSetup.m in Sources */,
+				D5AFA03617D4396A009A41F4 /* RCViewController+GLDraw.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D5AF9FD217D3C79C009A41F4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D5AF9FE617D3C79C009A41F4 /* RubrikCubeSolverTests.m in Sources */,
+				D58DBEAF17D45D0400763E0E /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		D5AF9FDD17D3C79C009A41F4 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D5AF9FB517D3C79C009A41F4 /* RubrikCubeSolver */;
+			targetProxy = D5AF9FDC17D3C79C009A41F4 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		D5AF9FC317D3C79C009A41F4 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D5AF9FC417D3C79C009A41F4 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		D5AF9FE117D3C79C009A41F4 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D5AF9FE217D3C79C009A41F4 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		D5AF9FE717D3C79C009A41F4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		D5AF9FE817D3C79C009A41F4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		D5AF9FEA17D3C79C009A41F4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "RubrikCubeSolver/RubrikCubeSolver-Prefix.pch";
+				INFOPLIST_FILE = "RubrikCubeSolver/RubrikCubeSolver-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		D5AF9FEB17D3C79C009A41F4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "RubrikCubeSolver/RubrikCubeSolver-Prefix.pch";
+				INFOPLIST_FILE = "RubrikCubeSolver/RubrikCubeSolver-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		D5AF9FED17D3C79C009A41F4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/RubrikCubeSolver.app/RubrikCubeSolver";
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
+					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "RubrikCubeSolver/RubrikCubeSolver-Prefix.pch";
+				INFOPLIST_FILE = "RubrikCubeSolverTests/RubrikCubeSolverTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		D5AF9FEE17D3C79C009A41F4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/RubrikCubeSolver.app/RubrikCubeSolver";
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
+					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "RubrikCubeSolver/RubrikCubeSolver-Prefix.pch";
+				INFOPLIST_FILE = "RubrikCubeSolverTests/RubrikCubeSolverTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		D5AF9FB017D3C79C009A41F4 /* Build configuration list for PBXProject "RubrikCubeSolver" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D5AF9FE717D3C79C009A41F4 /* Debug */,
+				D5AF9FE817D3C79C009A41F4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D5AF9FE917D3C79C009A41F4 /* Build configuration list for PBXNativeTarget "RubrikCubeSolver" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D5AF9FEA17D3C79C009A41F4 /* Debug */,
+				D5AF9FEB17D3C79C009A41F4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D5AF9FEC17D3C79C009A41F4 /* Build configuration list for PBXNativeTarget "RubrikCubeSolverTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D5AF9FED17D3C79C009A41F4 /* Debug */,
+				D5AF9FEE17D3C79C009A41F4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = D5AF9FAD17D3C79C009A41F4 /* Project object */;
+}

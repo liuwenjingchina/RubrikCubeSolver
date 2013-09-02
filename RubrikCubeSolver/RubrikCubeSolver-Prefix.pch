@@ -1,0 +1,40 @@
+//
+// Prefix header for all source files of the 'RubrikCubeSolver' target in the 'RubrikCubeSolver' project
+//
+
+#import <Availability.h>
+
+#ifndef __IPHONE_3_0
+#warning "This project uses features only available in iOS SDK 3.0 and later."
+#endif
+
+#ifdef __OBJC__
+
+// Libraries
+#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
+#import "RCDebugLog/RCDebugMacro.h"
+#import "RCTypes.h"
+
+// Uniform index.
+enum
+{
+    UNIFORM_MODELVIEWPROJECTION_MATRIX,
+    UNIFORM_NORMAL_MATRIX,
+    UNIFORM_CUBE_COLOR,
+    NUM_UNIFORMS
+};
+GLint uniforms[NUM_UNIFORMS];
+
+// Attribute index.
+enum
+{
+    ATTRIB_VERTEX,
+    ATTRIB_NORMAL,
+    NUM_ATTRIBUTES
+};
+
+//Macros
+#define BUFFER_OFFSET(i) ((char *)NULL + (i))
+
+#endif
