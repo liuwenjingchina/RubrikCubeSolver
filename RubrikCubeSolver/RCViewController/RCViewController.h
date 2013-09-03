@@ -14,8 +14,11 @@
     GLuint _program;
     GLuint _vertexBuffer;
     GLuint _colorBuffer;
+    NSInteger _frameCounter;
+    BOOL _clearScreen;
 }
 @property (strong, nonatomic) RCCubeManager *cubeManager;
+- (void)_fpstimeout;
 
 @end
 

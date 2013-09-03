@@ -213,8 +213,8 @@
 		D5AF9FF717D3C950009A41F4 /* RCViewController */ = {
 			isa = PBXGroup;
 			children = (
-				D5AFA00017D3CAE7009A41F4 /* RCViewController.h */,
 				D58DBEA417D4448600763E0E /* RCCubeData.h */,
+				D5AFA00017D3CAE7009A41F4 /* RCViewController.h */,
 				D5AFA00117D3CAE7009A41F4 /* RCViewController.m */,
 				D5AFA02F17D42F9D009A41F4 /* RCViewControllerGLSetup.m */,
 				D5AFA03417D4396A009A41F4 /* RCViewController+GLDraw.h */,

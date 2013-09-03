@@ -8,12 +8,33 @@
 
 #import "RCCubeDrawManager.h"
 #import "RCBlockService.h"
+#import "RCCubeService.h"
+#import "RCCubeMoveManager.h"
 #import <GLKit/GLKit.h>
-
+@interface RCCubeDrawManager()
+{
+    BOOL _hasUpdate;
+    BOOL _hasDrawn;
+}
+@end
 
 @implementation RCCubeDrawManager
+- (id)init
+{
+    self = [super init];
+    RCAssert(self, @"init failure");
+    _hasDrawn = NO;
+    return self;
+}
+
 -(void)drawInRect:(CGRect)rect
 {
+    // if no update to draw and we have already drawn once of the same thing
+    if (!_hasUpdate && _hasDrawn) return;
+    
+    // update flag
+    _hasDrawn = YES;
+    
     glClearColor(1, 1, 1, 1);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     
@@ -33,12 +54,12 @@
                 // Cube Level
                 RCRotation rotation;
                 RCPosition position;
-                if ([_BlockManager isRotatingAtIndex:index]) {
-                    position = [_BlockManager getRotatingPositionAtIndex:index];
-                    rotation = [_BlockManager getRotatingRotationAtIndex:index];
+                if ([_BlockService isRotatingAtIndex:index]) {
+                    position = [_BlockService getRotatingPositionAtIndex:index];
+                    rotation = [_BlockService getRotatingRotationAtIndex:index];
                 } else {
-                    position = [_BlockManager getStillPositionAtIndex:index];
-                    rotation = [_BlockManager getStillRotationAtIndex:index];
+                    position = [_BlockService getStillPositionAtIndex:index];
+                    rotation = [_BlockService getStillRotationAtIndex:index];
                 }
                 
                 GLKMatrix4 cubePositionMatrix = GLKMatrix4MakeTranslation(position.x, position.y, position.z);
@@ -66,5 +87,16 @@
         }
     }
 
+}
+
+-(void)cubeService:(id)cubeService DidChangedVisibility:(BOOL)visibility
+{
+    //update _drawNeeded
+    RCCubeService *t_cubeService = cubeService;
+    RCSpeed t_speed = [t_cubeService cubeRotationSpeed];
+    RCMove  t_move = [_CubeMoveManager currentMove];
+    _hasUpdate = YES;
+    if(!visibility)_hasUpdate = NO; // if not visible no update
+    if(!t_speed && !t_move) _hasUpdate = NO; //If no move no update
 }
 @end

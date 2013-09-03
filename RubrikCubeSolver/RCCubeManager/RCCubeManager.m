@@ -14,10 +14,7 @@
 #import "RCBlockService.h"
 @interface RCCubeManager()
 {
-    RCPosition _cubePosition;
-    RCRotation _cubeRotation;
-    RCSpeed _cubeRotationSpeed;
-    BOOL _visibility;
+
 }
 @end
 
@@ -31,29 +28,20 @@
     if (!cubeManager) return NULL;
     
     // alloc cube
-    RCCubeService *cube = [RCCubeService alloc];
-    cubeManager.cube = cube;
+    RCCubeService *cubeService = [RCCubeService alloc];
+    [cubeManager setCubeService:cubeService];
     
     // alloc cubeMoveManager
     RCCubeMoveManager *cubeMoveManager = [RCCubeMoveManager alloc];
-    cubeManager.cubeMoveManager = cubeMoveManager;
-    
-    // alloc cubeRotationManager
-    RCCubeRotationManager *cubeRotationManager = [RCCubeRotationManager alloc];
-    cubeManager.cubeRotationManager = cubeRotationManager;
+    [cubeManager setCubeMoveManager:cubeMoveManager];
     
     // alloc cubeTouchManager
     RCCubeTouchManager *cubeTouchManager = [RCCubeTouchManager alloc];
-    cubeManager.cubeTouchManager = cubeTouchManager;
-
+    [cubeManager setCubeTouchManager:cubeTouchManager];
+    
     // alloc cubeDrawManager
     RCCubeDrawManager *cubeDrawManager = [RCCubeDrawManager alloc];
-    cubeManager.cubeDrawManager = cubeDrawManager;
-    
-    // alloc blockManager
-    RCBlockService *blockManager = [RCBlockService alloc];
-    cubeManager.blockManager = blockManager;
-
+    [cubeManager setCubeDrawManager:cubeDrawManager];
     return cubeManager;
 }
 
@@ -65,48 +53,51 @@
     if (!self) return NULL;
     
     // init strong objects
-    self.blockManager = [self.blockManager init];
-    
-    self.cube = [self.cube init];
-    [self.cube setBlockManager:self.blockManager];
-    
+    self.cubeService = [self.cubeService init];
     self.cubeMoveManager = [self.cubeMoveManager init];
-    [self.cube setBlockManager:self.blockManager];
-    
-    self.cubeRotationManager = [self.cubeRotationManager init];
-    [self.cubeRotationManager setBlockManager:self.blockManager];
-    
     self.cubeTouchManager = [self.cubeTouchManager init];
-    
     self.cubeDrawManager = [self.cubeDrawManager init];
-    [self.cubeDrawManager setBlockManager:self.blockManager];
     
+    // assemble self
+    _BlockService = [self.cubeService blockService];
+    _CubeRotationManager = [self.cubeMoveManager cubeRotationManager];
+        
+    // assemble strong objects
+    [self.cubeService setBlockService:[self.cubeService blockService]];
+    [self.cubeService setCubeMoveManager:self.cubeMoveManager];
+    [self.cubeService setCubeDrawManager:self.cubeDrawManager];
+    [self.cubeService setCubeRotationManager:[self.cubeMoveManager cubeRotationManager]];
+        [self.cubeDrawManager setBlockService:_BlockService];
+    [self.cubeDrawManager setCubeMoveManager:self.cubeMoveManager];
+    [_CubeRotationManager setBlockService:_BlockService];
+    [_CubeRotationManager setCubeService:self.cubeService];
+
     return self;
 }
 
 -(void)setCubePosition:(RCPosition)position
 {
-    _cubePosition = position;
+    [self.cubeService setCubePosition:position];
 }
 
 -(void)setCubeRotation:(RCRotation)rotation
 {
-    _cubeRotation = rotation;
+    [self.cubeService setCubeRotation:rotation];
 }
 
 -(void)setCubeRotationSpeed:(RCSpeed)speed
 {
-    _cubeRotationSpeed = speed;
+    [self.cubeService setCubeRotationSpeed:speed];
 }
 
 -(void)setVisibility:(BOOL)visibility
 {
-    _visibility = visibility;
+    [self.cubeService setVisibility:visibility];
 }
 
 -(BOOL)isVisible
 {
-    return _visibility;
+    return [self.cubeService visibility];
 }
 
 -(void)commitMove:(RCMove)move

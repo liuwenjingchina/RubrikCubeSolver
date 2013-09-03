@@ -50,6 +50,7 @@
     
     glEnableVertexAttribArray(GLKVertexAttribColor);
     glVertexAttribPointer(GLKVertexAttribColor,3, GL_FLOAT, GL_FALSE, 0,BUFFER_OFFSET(0));
+    glClearColor(1, 1, 1, 1);
 }
 
 - (BOOL)_loadShaders
@@ -215,5 +216,7 @@
         _program = 0;
     }
 }
+
+
 
 @end

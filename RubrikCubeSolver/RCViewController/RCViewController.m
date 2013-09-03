@@ -8,6 +8,11 @@
 
 #import "RCViewController.h"
 #import "RCCubeManager.h"
+@interface RCViewController()
+{
+    UILabel *_fpsLabel;
+}
+@end
 @implementation RCViewController
 //@synthesize cubeManager;
 
@@ -28,9 +33,26 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     RCAssert(self, @"init error");
     
+    
     //init cubeManager
     self.cubeManager = [self.cubeManager init];
     RCAssert(self.cubeManager, @"cubeManager init error");
+    
+    //enable FPS display 
+#ifdef DEBUG
+    CGRect rect;
+    _frameCounter = 0;
+    rect.size.height = 40;
+    rect.size.width = 40;
+    rect.origin.x = self.view.frame.size.width-50;
+    rect.origin.y = self.view.frame.size.height-50;
+    _fpsLabel = [[UILabel alloc] initWithFrame:rect];
+    _fpsLabel.backgroundColor = [UIColor clearColor];
+    _fpsLabel.textAlignment = NSTextAlignmentCenter;
+    _fpsLabel.adjustsFontSizeToFitWidth = YES;
+    [self.view addSubview:_fpsLabel];
+    [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(_fpstimeout) userInfo:nil repeats:YES];
+#endif
     
     return self;
 }
@@ -40,5 +62,15 @@
     [super viewDidLoad];
     [self _setupOpenGL];
     [_cubeManager setVisibility:YES];
+    
+    // first time need to clear the screen
+    _clearScreen = YES;
+}
+
+-(void)_fpstimeout
+{
+    //clear counter
+    _fpsLabel.text = [NSString stringWithFormat:@"%.0f",_frameCounter*10.0f];
+    _frameCounter = 0;
 }
 @end

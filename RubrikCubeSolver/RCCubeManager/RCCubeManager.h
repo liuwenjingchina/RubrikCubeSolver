@@ -18,12 +18,12 @@ RCCubeDrawManager,
 RCBlockService;
 
 @interface RCCubeManager : NSObject
-@property (strong, atomic) RCCubeService* cube;
+@property (strong, atomic) RCCubeService* cubeService;
 @property (strong, nonatomic) RCCubeMoveManager *cubeMoveManager;
-@property (strong, nonatomic) RCCubeRotationManager *cubeRotationManager;
+@property (weak, nonatomic) RCCubeRotationManager *CubeRotationManager;
 @property (strong, nonatomic) RCCubeTouchManager *cubeTouchManager;
 @property (strong, nonatomic) RCCubeDrawManager *cubeDrawManager;
-@property (strong, atomic) RCBlockService *blockManager;
+@property (weak, atomic) RCBlockService *BlockService;
 @property (strong, nonatomic) EAGLContext *context;
 
 -(void)setCubePosition:(RCPosition)position;

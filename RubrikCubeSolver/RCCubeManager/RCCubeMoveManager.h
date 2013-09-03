@@ -8,6 +8,10 @@
 
 #import <Foundation/Foundation.h>
 
+@class RCCubeService,
+RCCubeRotationManager;
 @interface RCCubeMoveManager : NSObject
-
+@property (strong, nonatomic) RCCubeRotationManager *cubeRotationManager;
+-(void)cubeService:(RCCubeService *)cubeService DidChangedVisibility:(BOOL)visibility;
+-(RCMove)currentMove;
 @end

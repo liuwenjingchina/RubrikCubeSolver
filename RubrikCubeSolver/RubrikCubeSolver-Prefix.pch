@@ -37,4 +37,6 @@ enum
 //Macros
 #define BUFFER_OFFSET(i) ((char *)NULL + (i))
 
+#define DATA_REFRESH_RATE 0.02f
+
 #endif

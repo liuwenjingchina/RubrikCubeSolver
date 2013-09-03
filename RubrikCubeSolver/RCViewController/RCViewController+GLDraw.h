@@ -9,5 +9,4 @@
 #import "RCViewController.h"
 
 @interface RCViewController (GLDraw)
-
 @end

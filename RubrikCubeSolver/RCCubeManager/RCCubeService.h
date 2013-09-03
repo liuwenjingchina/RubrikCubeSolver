@@ -8,11 +8,19 @@
 
 #import <Foundation/Foundation.h>
 #import "RCBlock.h"
-@class RCBlockService;
+@class RCBlockService,
+RCCubeMoveManager,
+RCCubeRotationManager,
+RCCubeDrawManager;
 @interface RCCubeService : NSObject
-{
-    RCBlock _blocks [3][3][3];
-}
-@property (weak, atomic)RCBlockService *BlockManager;
+@property RCPosition cubePosition;
+@property RCRotation cubeRotation;
+@property RCSpeed cubeRotationSpeed;
+@property(strong, atomic)RCBlockService *blockService;
+@property(weak, nonatomic)RCCubeMoveManager *CubeMoveManager;
+@property(weak, nonatomic)RCCubeRotationManager *CubeRotationManager;
+@property (weak, nonatomic)RCCubeDrawManager *CubeDrawManager;
 
+-(void)setVisibility:(BOOL)visibility;
+-(BOOL)visibility;
 @end

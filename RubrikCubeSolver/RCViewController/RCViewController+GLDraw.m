@@ -11,6 +11,17 @@
 @implementation RCViewController (GLDraw)
 - (void)glkView:(GLKView *)view drawInRect:(CGRect)rect
 {
+    if (_clearScreen) {
+        glClearColor(1, 1, 1, 1);
+        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+        _clearScreen = NO;
+    }
+    
+    //frameCounter update
+#ifdef DEBUG
+    _frameCounter++;
+#endif
+    
     if ([self.cubeManager isVisible]) {
         [self.cubeManager drawInRect:rect];
     }
