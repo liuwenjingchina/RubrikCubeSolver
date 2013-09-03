@@ -64,14 +64,14 @@
         
     // assemble strong objects
     [self.cubeService setBlockService:[self.cubeService blockService]];
-    [self.cubeService setCubeMoveManager:self.cubeMoveManager];
-    [self.cubeService setCubeDrawManager:self.cubeDrawManager];
-    [self.cubeService setCubeRotationManager:[self.cubeMoveManager cubeRotationManager]];
-        [self.cubeDrawManager setBlockService:_BlockService];
-    [self.cubeDrawManager setCubeMoveManager:self.cubeMoveManager];
+    [self.cubeService addDelegate:self.cubeMoveManager];
+    [self.cubeService addDelegate:self.CubeRotationManager];
+
+    [self.cubeDrawManager setBlockService:_BlockService];
+    [self.cubeDrawManager setCubeService:self.cubeService];
+    [self.cubeDrawManager setCubeRotationManager:_CubeRotationManager];
     [_CubeRotationManager setBlockService:_BlockService];
     [_CubeRotationManager setCubeService:self.cubeService];
-
     return self;
 }
 

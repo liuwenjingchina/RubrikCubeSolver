@@ -8,13 +8,16 @@
 
 #import "RCCubeRotationManager.h"
 #import "RCCubeService.h"
+#import <GLKit/GLKit.h>
 @interface RCCubeRotationManager()
 {
     BOOL _cubeRotationUpdateNeeded;
     BOOL _moveRotationUpdateNeeded;
     NSTimer *_updateTimer;
+    NSDate *_startTime;
+    NSDate *_endTime;
 }
--(void)_updateRotation;
+-(void)_update;
 @end
 
 @implementation RCCubeRotationManager
@@ -32,8 +35,9 @@
     return self;
 }
 
--(void)cubeService:(RCCubeService *)cubeService DidChangedVisibility:(BOOL)visibility
+-(void)cubeService:(RCCubeService *)cubeService NotifyChange:(RCCubeServiceChange)change
 {
+    BOOL visibility = [cubeService visibility];
     // Need to update flags
     if (visibility) {
         _cubeRotationUpdateNeeded = [cubeService cubeRotationSpeed]==0? NO:YES;
@@ -44,8 +48,8 @@
     }
     
     // If anything needs to be updated frequently, register a timer
-    if (_cubeRotationUpdateNeeded||_cubeRotationUpdateNeeded) {
-         _updateTimer = [NSTimer timerWithTimeInterval:DATA_REFRESH_RATE target:self selector:@selector(_updateRotation) userInfo:nil repeats:YES];
+    if (_cubeRotationUpdateNeeded||_moveRotationUpdateNeeded) {
+         _updateTimer = [NSTimer timerWithTimeInterval:1/DATA_REFRESH_RATE target:self selector:@selector(_update) userInfo:nil repeats:YES];
         [[NSRunLoop currentRunLoop] addTimer:_updateTimer forMode:NSDefaultRunLoopMode];
     }else {
         if (_updateTimer) {
@@ -54,8 +58,21 @@
     }
 }
 
-- (void)_updateRotation
+- (void)_update
 {
-    RCLog(@"entering");
+    _startTime = _endTime;
+    _endTime = [NSDate date];
+    if (!_startTime) return; // if cannot calculate time diff
+    
+    // Calculate Time difference
+    NSTimeInterval timeDiff = [_endTime timeIntervalSinceDate:_startTime];
+    
+    // Update CubeRotation
+    RCRotation newRotation = _CubeService.cubeRotation;
+    newRotation.y += timeDiff;
+    _CubeService.cubeRotation = newRotation;
+    
+    // Update flag
+    self.hasUpdate = YES;
 }
 @end

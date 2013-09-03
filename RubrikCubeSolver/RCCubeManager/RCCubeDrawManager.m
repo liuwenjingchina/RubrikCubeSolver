@@ -9,12 +9,11 @@
 #import "RCCubeDrawManager.h"
 #import "RCBlockService.h"
 #import "RCCubeService.h"
-#import "RCCubeMoveManager.h"
+#import "RCCubeRotationManager.h"
 #import <GLKit/GLKit.h>
 @interface RCCubeDrawManager()
 {
-    BOOL _hasUpdate;
-    BOOL _hasDrawn;
+    BOOL _firstDraw;
 }
 @end
 
@@ -23,17 +22,16 @@
 {
     self = [super init];
     RCAssert(self, @"init failure");
-    _hasDrawn = NO;
+    _firstDraw = YES;
     return self;
 }
 
 -(void)drawInRect:(CGRect)rect
 {
     // if no update to draw and we have already drawn once of the same thing
-    if (!_hasUpdate && _hasDrawn) return;
-    
-    // update flag
-    _hasDrawn = YES;
+    if (!_firstDraw && !_CubeRotationManager.hasUpdate) return;
+    _firstDraw = NO; //have already drawn
+    [_CubeRotationManager setHasUpdate:NO];
     
     glClearColor(1, 1, 1, 1);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -51,7 +49,7 @@
                 index.j = j;
                 index.k = k;
                 
-                // Cube Level
+                // Block Level
                 RCRotation rotation;
                 RCPosition position;
                 if ([_BlockService isRotatingAtIndex:index]) {
@@ -62,20 +60,35 @@
                     rotation = [_BlockService getStillRotationAtIndex:index];
                 }
                 
-                GLKMatrix4 cubePositionMatrix = GLKMatrix4MakeTranslation(position.x, position.y, position.z);
-                GLKMatrix4 cubeMatrix = cubePositionMatrix;
+                GLKMatrix4 blockPositionMatrix = GLKMatrix4MakeTranslation(position.x, position.y, position.z);
+                GLKMatrix4 blockMatrix = blockPositionMatrix;
                 
                 if (rotation.x || rotation.y || rotation.z) {
-                    GLKMatrix4 cubeRotationMatrix = GLKMatrix4MakeRotation(1, rotation.x, rotation.y, rotation.z);
-                    cubeMatrix = GLKMatrix4Multiply(cubeRotationMatrix, cubeMatrix);
+                    GLKMatrix4 blockRotationMatrix = GLKMatrix4MakeRotation(1, rotation.x, rotation.y, rotation.z);
+                    blockMatrix = GLKMatrix4Multiply(blockRotationMatrix, blockMatrix);
                 }
                 
-                GLKMatrix4 viewMatrix = GLKMatrix4MakeLookAt(6/1.5, 4/1.5, 9/1.5, 0, 0, 0, 0, 1, 0);
-                GLKMatrix4 worldMatrix = GLKMatrix4MakeTranslation(0, 0.2, 0);
+                // Cube Level
+                GLKMatrix4 cubeMatrix = GLKMatrix4MakeTranslation(0, 0, 0);
+                float rotationChange = _CubeService.cubeRotation.y;
+                if (rotationChange) {
+                    cubeMatrix = GLKMatrix4MakeRotation(rotationChange, 0, 1, 0);
+                }
+                
+                // World Level
+                RCPosition cubePosition = _CubeService.cubePosition;
+                GLKMatrix4 worldMatrix = GLKMatrix4MakeTranslation(cubePosition.x, cubePosition.y, cubePosition.z);
+                
+                // Camera Level
+                GLKMatrix4 cameraMatrix = GLKMatrix4MakeLookAt(6/1.5, 4/1.5, 9/1.5, 0, 0, 0, 0, 1, 0);
                 
                 // Assemble Levels
-                GLKMatrix4 modelViewMatrix = GLKMatrix4Multiply(worldMatrix, cubeMatrix);
-                modelViewMatrix = GLKMatrix4Multiply(viewMatrix, modelViewMatrix);
+                GLKMatrix4 modelViewMatrix = blockMatrix;
+                modelViewMatrix = GLKMatrix4Multiply(cubeMatrix, modelViewMatrix);
+                modelViewMatrix = GLKMatrix4Multiply(worldMatrix, modelViewMatrix);
+                modelViewMatrix = GLKMatrix4Multiply(cameraMatrix, modelViewMatrix);
+                
+                // Final Matrices
                 GLKMatrix3 normalMatrix = GLKMatrix3InvertAndTranspose(GLKMatrix4GetMatrix3(modelViewMatrix), NULL);
                 modelViewMatrix = GLKMatrix4Multiply(projectionMatrix, modelViewMatrix);
                 
@@ -86,17 +99,6 @@
             }
         }
     }
-
 }
 
--(void)cubeService:(id)cubeService DidChangedVisibility:(BOOL)visibility
-{
-    //update _drawNeeded
-    RCCubeService *t_cubeService = cubeService;
-    RCSpeed t_speed = [t_cubeService cubeRotationSpeed];
-    RCMove  t_move = [_CubeMoveManager currentMove];
-    _hasUpdate = YES;
-    if(!visibility)_hasUpdate = NO; // if not visible no update
-    if(!t_speed && !t_move) _hasUpdate = NO; //If no move no update
-}
 @end

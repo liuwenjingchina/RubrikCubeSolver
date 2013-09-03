@@ -50,7 +50,9 @@
     
     glEnableVertexAttribArray(GLKVertexAttribColor);
     glVertexAttribPointer(GLKVertexAttribColor,3, GL_FLOAT, GL_FALSE, 0,BUFFER_OFFSET(0));
-    glClearColor(1, 1, 1, 1);
+
+    // set refresh rate
+    self.preferredFramesPerSecond = FRAME_REFRESH_RATE;
 }
 
 - (BOOL)_loadShaders

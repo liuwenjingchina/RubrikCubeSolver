@@ -62,7 +62,7 @@
     [super viewDidLoad];
     [self _setupOpenGL];
     [_cubeManager setVisibility:YES];
-    
+    [_cubeManager setCubeRotationSpeed:0.1];
     // first time need to clear the screen
     _clearScreen = YES;
 }

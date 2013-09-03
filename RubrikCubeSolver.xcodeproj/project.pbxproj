@@ -54,6 +54,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		D53BC6E817D574CE00640768 /* RCCubeServiceDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = RCCubeServiceDelegate.h; path = RCCubeManager/RCCubeServiceDelegate.h; sourceTree = "<group>"; };
 		D58DBEA417D4448600763E0E /* RCCubeData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = RCCubeData.h; path = RCViewController/RCCubeData.h; sourceTree = "<group>"; };
 		D58DBEA517D45D0400763E0E /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "SupportingFiles/Default-568h@2x.png"; sourceTree = "<group>"; };
 		D58DBEA617D45D0400763E0E /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = SupportingFiles/Default.png; sourceTree = "<group>"; };
@@ -254,6 +255,7 @@
 			children = (
 				D5AFA00D17D3DC11009A41F4 /* RCCubeManager.h */,
 				D5AFA00E17D3DC11009A41F4 /* RCCubeManager.m */,
+				D53BC6E817D574CE00640768 /* RCCubeServiceDelegate.h */,
 				D5AFA01317D3E527009A41F4 /* RCCubeService.h */,
 				D5AFA01417D3E527009A41F4 /* RCCubeService.m */,
 				D5AFA01F17D3EC07009A41F4 /* RCBlock.h */,

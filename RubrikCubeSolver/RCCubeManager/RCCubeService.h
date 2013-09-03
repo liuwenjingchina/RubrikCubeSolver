@@ -15,7 +15,6 @@ RCCubeDrawManager;
 @interface RCCubeService : NSObject
 @property RCPosition cubePosition;
 @property RCRotation cubeRotation;
-@property RCSpeed cubeRotationSpeed;
 @property(strong, atomic)RCBlockService *blockService;
 @property(weak, nonatomic)RCCubeMoveManager *CubeMoveManager;
 @property(weak, nonatomic)RCCubeRotationManager *CubeRotationManager;
@@ -23,4 +22,8 @@ RCCubeDrawManager;
 
 -(void)setVisibility:(BOOL)visibility;
 -(BOOL)visibility;
+-(void)setCubeRotationSpeed:(RCSpeed)cubeRotationSpeed;
+-(RCSpeed)cubeRotationSpeed;
+-(void)addDelegate:(id)object;
+-(void)removeDelegate:(id)object;
 @end

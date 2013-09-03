@@ -28,13 +28,14 @@
     return self;
 }
 
--(void)cubeService:(RCCubeService *)cubeService DidChangedVisibility:(BOOL)visibility
-{
-
-}
-
 -(RCMove)currentMove
 {
     return [self.cubeRotationManager currentMove];
 }
+
+-(void)cubeService:(RCCubeService *)cubeService NotifyChange:(RCCubeServiceChange)change
+{
+
+}
+
 @end

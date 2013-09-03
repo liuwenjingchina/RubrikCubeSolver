@@ -9,13 +9,16 @@
 #import "RCCubeService.h"
 #import "RCBlockService.h"
 #import "RCBlock.h"
-#import "RCCubeMoveManager.h"
-#import "RCCubeRotationManager.h"
-#import "RCCubeDrawManager.h"
+//#import "RCCubeMoveManager.h"
+//#import "RCCubeRotationManager.h"
+//#import "RCCubeDrawManager.h"
+#import "RCCubeServiceDelegate.h"
 @interface RCCubeService()
 {
     BOOL _visibility;
+    RCSpeed _cubeRotationSpeed;
 }
+@property(strong, nonatomic)NSMutableArray *Delegates;
 @end
 
 @implementation RCCubeService
@@ -23,8 +26,14 @@
 {
     // self alloc
     RCCubeService *cube = [super alloc];
+    
+    // alloc strong objects
     RCBlockService *blockService = [RCBlockService alloc];
     cube.blockService = blockService;
+    
+    NSMutableArray *delegates = [[NSMutableArray alloc]initWithCapacity:10];
+    cube.Delegates = delegates;
+    
     RCAssert(cube && blockService, @"alloc failure");
     return cube;
 }
@@ -35,7 +44,17 @@
     self = [super init];
     self.blockService = [self.blockService init];
     RCAssert(self, @"init failure");
+    
+    //Init cubePosition
+    RCPosition cubePosition;
+    cubePosition.x = 0;
+    cubePosition.y = 0.2;
+    cubePosition.z = 0;
+    self.cubePosition = cubePosition;
+    
+    //Init Visisbility
     _visibility = NO;
+    
     return self;
 }
 
@@ -49,9 +68,34 @@
     _visibility = visibility;
     
     // Notify Visibility change
-    [_CubeMoveManager cubeService:self DidChangedVisibility:visibility];
-    [_CubeRotationManager cubeService:self DidChangedVisibility:visibility];
-    [_CubeDrawManager cubeService:self DidChangedVisibility:visibility];
+    for (id<RCCubeServiceDelegate>delegate in _Delegates) {
+        [delegate cubeService:self NotifyChange:RCCubeServiceChangeCubeVisibility];
+    }
+}
+
+-(void)setCubeRotationSpeed:(RCSpeed)cubeRotationSpeed
+{
+    _cubeRotationSpeed = cubeRotationSpeed;
+    
+    //Notify RotationSpeed change
+    for (id<RCCubeServiceDelegate>delegate in _Delegates) {
+        [delegate cubeService:self NotifyChange:RCCubeServiceChangeCubeRotationSpeed];
+    }
+}
+
+-(RCSpeed)cubeRotationSpeed
+{
+    return _cubeRotationSpeed;
+}
+
+-(void)addDelegate:(id)object
+{
+    [_Delegates addObject:object];
+}
+
+-(void)removeDelegate:(id)object
+{
+    [_Delegates removeObject:object];
 }
 
 @end

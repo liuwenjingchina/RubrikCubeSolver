@@ -9,11 +9,12 @@
 #import <Foundation/Foundation.h>
 @class RCBlockService,
 RCCubeService,
-RCCubeMoveManager;
+RCCubeService,
+RCCubeRotationManager;
 @interface RCCubeDrawManager : NSObject
 @property (weak, atomic) RCBlockService *BlockService;
-@property (weak, nonatomic) RCCubeMoveManager *CubeMoveManager;
+@property (weak, atomic) RCCubeService *CubeService;
+@property (strong, nonatomic) RCCubeRotationManager *CubeRotationManager;
 -(void)drawInRect:(CGRect)rect;
--(void)cubeService:(RCCubeService *)cubeService DidChangedVisibility:(BOOL)visibility;
 
 @end

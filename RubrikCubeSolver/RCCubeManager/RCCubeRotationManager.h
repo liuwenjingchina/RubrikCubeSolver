@@ -7,11 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "RCCubeServiceDelegate.h"
 @class RCBlockService,
 RCCubeService;
-@interface RCCubeRotationManager : NSObject
+@interface RCCubeRotationManager : NSObject<RCCubeServiceDelegate>
 @property (weak, atomic)RCBlockService *BlockService;
 @property (weak, atomic)RCCubeService *CubeService;
 @property RCMove currentMove;
--(void)cubeService:(RCCubeService *)cubeService DidChangedVisibility:(BOOL)visibility;
+@property BOOL hasUpdate;
 @end
