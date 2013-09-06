@@ -72,6 +72,8 @@
     [self.cubeDrawManager setCubeRotationManager:_CubeRotationManager];
     [_CubeRotationManager setBlockService:_BlockService];
     [_CubeRotationManager setCubeService:self.cubeService];
+    [self.cubeTouchManager setCubeService:self.cubeService];
+    [self.cubeTouchManager addDelegate:self.CubeRotationManager];
     return self;
 }
 
@@ -110,5 +112,17 @@
     [self.cubeDrawManager drawInRect:rect];
 }
 
+-(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    [self.cubeTouchManager touchesBegan:touches withEvent:event];
+}
+-(void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    [self.cubeTouchManager touchesMoved:touches withEvent:event];
+}
+-(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    [self.cubeTouchManager touchesEnded:touches withEvent:event];
+}
 
 @end

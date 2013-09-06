@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D53BC6FD17D5936800640768 /* RCViewController+ViewTouchEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = D53BC6FC17D5936800640768 /* RCViewController+ViewTouchEvent.m */; };
 		D58DBEAC17D45D0400763E0E /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D58DBEA517D45D0400763E0E /* Default-568h@2x.png */; };
 		D58DBEAD17D45D0400763E0E /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = D58DBEA617D45D0400763E0E /* Default.png */; };
 		D58DBEAE17D45D0400763E0E /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D58DBEA717D45D0400763E0E /* Default@2x.png */; };
@@ -55,6 +56,9 @@
 
 /* Begin PBXFileReference section */
 		D53BC6E817D574CE00640768 /* RCCubeServiceDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = RCCubeServiceDelegate.h; path = RCCubeManager/RCCubeServiceDelegate.h; sourceTree = "<group>"; };
+		D53BC6FB17D5936800640768 /* RCViewController+ViewTouchEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "RCViewController+ViewTouchEvent.h"; path = "RCViewController/RCViewController+ViewTouchEvent.h"; sourceTree = "<group>"; };
+		D53BC6FC17D5936800640768 /* RCViewController+ViewTouchEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "RCViewController+ViewTouchEvent.m"; path = "RCViewController/RCViewController+ViewTouchEvent.m"; sourceTree = "<group>"; };
+		D53BC70317D5A6BD00640768 /* RCCubeTouchManagerDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = RCCubeTouchManagerDelegate.h; path = RCCubeManager/RCCubeTouchManagerDelegate.h; sourceTree = "<group>"; };
 		D58DBEA417D4448600763E0E /* RCCubeData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = RCCubeData.h; path = RCViewController/RCCubeData.h; sourceTree = "<group>"; };
 		D58DBEA517D45D0400763E0E /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "SupportingFiles/Default-568h@2x.png"; sourceTree = "<group>"; };
 		D58DBEA617D45D0400763E0E /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = SupportingFiles/Default.png; sourceTree = "<group>"; };
@@ -220,6 +224,8 @@
 				D5AFA02F17D42F9D009A41F4 /* RCViewControllerGLSetup.m */,
 				D5AFA03417D4396A009A41F4 /* RCViewController+GLDraw.h */,
 				D5AFA03517D4396A009A41F4 /* RCViewController+GLDraw.m */,
+				D53BC6FB17D5936800640768 /* RCViewController+ViewTouchEvent.h */,
+				D53BC6FC17D5936800640768 /* RCViewController+ViewTouchEvent.m */,
 			);
 			name = RCViewController;
 			sourceTree = "<group>";
@@ -263,6 +269,7 @@
 				D5AFA01117D3E4F2009A41F4 /* RCCubeMoveManager.m */,
 				D5AFA01617D3E552009A41F4 /* RCCubeRotationManager.h */,
 				D5AFA01717D3E552009A41F4 /* RCCubeRotationManager.m */,
+				D53BC70317D5A6BD00640768 /* RCCubeTouchManagerDelegate.h */,
 				D5AFA01917D3E569009A41F4 /* RCCubeTouchManager.h */,
 				D5AFA01A17D3E569009A41F4 /* RCCubeTouchManager.m */,
 				D5AFA01C17D3E57D009A41F4 /* RCCubeDrawManager.h */,
@@ -411,6 +418,7 @@
 				D5AFA02317D3F3E3009A41F4 /* RCBlockService.m in Sources */,
 				D5AFA03717D439C9009A41F4 /* RCViewControllerGLSetup.m in Sources */,
 				D5AFA03617D4396A009A41F4 /* RCViewController+GLDraw.m in Sources */,
+				D53BC6FD17D5936800640768 /* RCViewController+ViewTouchEvent.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

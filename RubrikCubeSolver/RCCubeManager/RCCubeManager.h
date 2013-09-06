@@ -33,4 +33,7 @@ RCBlockService;
 -(void)drawInRect:(CGRect)rect;
 -(void)setVisibility:(BOOL)visibility;
 -(BOOL)isVisible;
+-(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event;
+-(void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event;
+-(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event;
 @end
