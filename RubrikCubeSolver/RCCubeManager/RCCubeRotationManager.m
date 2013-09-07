@@ -109,40 +109,29 @@
     // Update rotation
     if (!_isTouching) {
         // Calculate rotation based on calerbrated speed if no touching screen
-        RCSpeed curSpeed,calibratedSpeed;
+        RCSpeed curSpeed;
         curSpeed = [_CubeService cubeRotationSpeed];
-        calibratedSpeed = 0;
-        
-        /*
-         @todo Define stdTimeInterval somewhere
-         */
-        // Calculate caliberation factor - time Factor
-        float stdTimeInterval = 1/60.0f;
-        float timeFactor = stdTimeInterval/timeDiff;
-
-        /*
-         @todo Make speed defined somewhere
-         */
         
         // update speed without caliberation 
-        if (abs(curSpeed)>1.1) {
+        if (abs(curSpeed)>1) {
             // Need to speed down
-            curSpeed = [self _add:curSpeed*0.97 with:0] ;
-        } else if(curSpeed >= 0){
-            // Make speed standard
-            curSpeed = 1;
-        } else if(curSpeed < 0){
-            curSpeed = -1;
+            curSpeed = [self _add:curSpeed*0.97 with:0];
+            if (abs(curSpeed)<1) {
+                if(curSpeed >= 0){
+                    // Make speed standard
+                    curSpeed = 1;
+                } else if(curSpeed < 0){
+                    curSpeed = -1;
+                }
+            }
         }
-        [_CubeService setCubeRotationSpeed:[self _add:curSpeed with:0]];
         
-        // Calculate speed after calibration
-        calibratedSpeed = [self _add:curSpeed*timeFactor with:0];
+        [_CubeService setCubeRotationSpeed:[self _add:curSpeed with:0]];
         
         // Calculate rotation
         /* have a constant factor to made the speed compatible with touchMoveDistance */
-        float constantFactor = 1.5;
-        float distanceDiff = [self _add:timeDiff*calibratedSpeed*constantFactor with:0];
+        float constantFactor = 0.5f;
+        float distanceDiff = [self _add:timeDiff*curSpeed*constantFactor with:0];
         newRotation.y = [self _add:curRotation.y with:distanceDiff];
         
         //RCLog(@"Distance Diff: %.2f", distanceDiff);
