@@ -26,4 +26,7 @@ RCCubeDrawManager;
 -(RCSpeed)cubeRotationSpeed;
 -(void)addDelegate:(id)object;
 -(void)removeDelegate:(id)object;
+-(RCRotation)currentRotation;
+-(void)notifyCubeWillDraw;
+-(void)notifyCubeDidDraw;
 @end

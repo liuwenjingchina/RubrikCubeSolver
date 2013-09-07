@@ -10,11 +10,13 @@
 #import "RCBlockService.h"
 #import "RCCubeService.h"
 #import "RCCubeRotationManager.h"
+#import "RCCubeTouchManager.h"
 #import <GLKit/GLKit.h>
 @interface RCCubeDrawManager()
 {
     BOOL _firstDraw;
 }
+-(BOOL)_shouldDraw;
 @end
 
 @implementation RCCubeDrawManager
@@ -28,18 +30,22 @@
 
 -(void)drawInRect:(CGRect)rect
 {
-    // if no update to draw and we have already drawn once of the same thing
-    if (!_firstDraw && !_CubeRotationManager.hasUpdate) return;
-    _firstDraw = NO; //have already drawn
-    [_CubeRotationManager setHasUpdate:NO];
+    // if no need to draw, don't draw
+    if(![self _shouldDraw]) {
+        return;
+    }
+
+    // Post a broadcast a notification of drawing start
+    [_CubeService notifyCubeWillDraw];
     
+    // Clean screen
     glClearColor(1, 1, 1, 1);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     
     // Projection Level
     float aspect = fabsf(rect.size.width / rect.size.height);
     GLKMatrix4 projectionMatrix = GLKMatrix4MakePerspective(GLKMathDegreesToRadians(60.0f), aspect, 0.1f, 100.0f);
-        
+
     for (int i=0; i<3; i++) {
         for (int j=0; j<3; j++) {
             for (int k=0; k<3; k++){
@@ -99,6 +105,36 @@
             }
         }
     }
+    
+    // Notify cube has been drawn
+    [_CubeService notifyCubeDidDraw];
+}
+
+-(BOOL)_shouldDraw
+{
+    //If not visible, should not draw
+    if (![_CubeService visibility]) {
+        return NO;
+    }
+    //If it is the first time, should draw
+    if (_firstDraw) {
+        _firstDraw = NO;
+        return YES;
+    }
+    //If cube is self rotating, should draw
+    if ([_CubeService cubeRotationSpeed]!=0) {
+        return YES;
+    }
+    //If touched, should draw
+    if ([_CubeTouchManager isTouching]){
+        return YES;
+    }
+    //If cube is doing a move, should draw
+    if ([_CubeRotationManager currentMove]!=RCMoveStill) {
+        return YES;
+    }
+    //Else no need to draw
+    return NO;
 }
 
 @end

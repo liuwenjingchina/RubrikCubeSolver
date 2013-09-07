@@ -69,7 +69,9 @@
     
     // Notify Visibility change
     for (id<RCCubeServiceDelegate>delegate in _Delegates) {
-        [delegate cubeService:self NotifyChange:RCCubeServiceChangeCubeVisibility];
+        if ([delegate respondsToSelector:@selector(cubeService:NotifyChange:)]){
+            [delegate cubeService:self NotifyChange:RCCubeServiceChangeCubeVisibility];
+        }
     }
 }
 
@@ -79,13 +81,33 @@
     
     //Notify RotationSpeed change
     for (id<RCCubeServiceDelegate>delegate in _Delegates) {
-        [delegate cubeService:self NotifyChange:RCCubeServiceChangeCubeRotationSpeed];
+        if ([delegate respondsToSelector:@selector(cubeService:NotifyChange:)]){
+            [delegate cubeService:self NotifyChange:RCCubeServiceChangeCubeRotationSpeed];
+        }
     }
 }
 
 -(RCSpeed)cubeRotationSpeed
 {
     return _cubeRotationSpeed;
+}
+
+-(void)notifyCubeWillDraw
+{
+    for (id<RCCubeServiceDelegate>delegate in _Delegates) {
+        if ([delegate respondsToSelector:@selector(cubeServiceWillDraw:)]){
+            [delegate cubeServiceWillDraw:self];
+        }
+    }
+}
+
+-(void)notifyCubeDidDraw
+{
+    for (id<RCCubeServiceDelegate>delegate in _Delegates) {
+        if ([delegate respondsToSelector:@selector(cubeServiceDidDraw:)]){
+            [delegate cubeServiceDidDraw:self];
+        }
+    }
 }
 
 -(void)addDelegate:(id)object

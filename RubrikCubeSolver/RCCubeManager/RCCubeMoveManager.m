@@ -33,9 +33,4 @@
     return [self.cubeRotationManager currentMove];
 }
 
--(void)cubeService:(RCCubeService *)cubeService NotifyChange:(RCCubeServiceChange)change
-{
-
-}
-
 @end
