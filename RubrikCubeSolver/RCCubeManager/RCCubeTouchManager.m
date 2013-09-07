@@ -11,7 +11,7 @@
 #import "RCCubeTouchManagerDelegate.h"
 @interface RCCubeTouchManager()
 {
-    
+    BOOL _touchBegan;
 }
 @property(strong, nonatomic)NSMutableArray *Delegates;
 
@@ -64,7 +64,7 @@
     NSNumber *xLocationNumber = [[NSNumber alloc] initWithDouble:xLocation];
     [_touchLocations insertObject: xLocationNumber atIndex:0];
     [_touchTimes insertObject:CurrentTimeNumber atIndex:0];
-    _isTouching = YES;
+    _touchBegan = YES;
 }
 
 -(void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
@@ -113,7 +113,7 @@
     double speed = (endLocation - startLocation)/(endTime - startTime)/60;
     [_CubeService setCubeRotationSpeed:speed];
     [self _notifyTouchEnd:touches];
-    _isTouching = NO;
+    _touchBegan = NO;
 }
 
 -(void)addDelegate:(id)object
