@@ -65,7 +65,7 @@
         if (!_updateTimer || !_updateTimer.isValid) {
             
             RCLog(@"Register update timer");
-            _updateTimer = [NSTimer timerWithTimeInterval:1/60.0f target:self selector:@selector(_update) userInfo:nil repeats:YES];
+            _updateTimer = [NSTimer timerWithTimeInterval:1/DATA_REFRESH_RATE target:self selector:@selector(_update) userInfo:nil repeats:YES];
             [[NSRunLoop currentRunLoop] addTimer:_updateTimer forMode:NSDefaultRunLoopMode];
             _startTime = NULL;
             _endTime = NULL;
