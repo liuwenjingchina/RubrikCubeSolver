@@ -9,8 +9,16 @@
 #import <Foundation/Foundation.h>
 #import "RCCubeServiceDelegate.h"
 @class RCCubeService,
-RCCubeRotationManager;
+RCBlockService,
+RCCubeRotationManager,
+RCMove;
 @interface RCCubeMoveManager : NSObject<RCCubeServiceDelegate>
 @property (strong, nonatomic) RCCubeRotationManager *cubeRotationManager;
--(RCMove)currentMove;
+@property(weak, atomic)RCCubeService *CubeService;
+@property(weak, atomic)RCBlockService *BlockService;
+-(void)queueInMove:(RCMoveDescriptor)move;
+-(RCMove *)newMove;
+-(void)endMove:(RCMove *)endMove;
+-(void)setCurrentMove:(RCMove *)currentMove;
+-(RCMove *)currentMove;
 @end

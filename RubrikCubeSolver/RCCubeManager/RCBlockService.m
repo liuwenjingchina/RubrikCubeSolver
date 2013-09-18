@@ -8,7 +8,7 @@
 
 #import "RCBlockService.h"
 #import "RCBlock.h"
-
+#import "RCMove.h"
 // private variables and functions
 @interface RCBlockService()
 {
@@ -19,7 +19,7 @@
 
 // public functions
 @implementation RCBlockService
-
+@synthesize currentMove;
 + (id)alloc
 {
     RCBlockService *blockManager = [super alloc];
@@ -53,17 +53,15 @@
                 rotation.x = 0;
                 rotation.y = 0;
                 rotation.z = 0;
-                [self setStillRotation:rotation AtIndex:index];
-                [self setRotatingRotation:rotation AtIndex:index];
-            
-                // init isRotating
-                [self setIsRotating:NO AtIndex:index];
                 
                 // init isSetColorNeeded
                 [self _setIsSetColorNeeded:NO AtIndex:index];
             }
         }
     }
+    // init isRotating
+    self.currentMove = RCMoveStill;
+    
     return self;
 }
 
@@ -97,24 +95,11 @@
     return _blocks[index.i][index.j][index.k].stillRotation;
 }
 
--(void)setRotatingRotation:(RCRotation)rotation AtIndex:(RCIndex)index
-{
-    _blocks[index.i][index.j][index.k].rotatingRotation = rotation;
-}
-
--(RCRotation)getRotatingRotationAtIndex:(RCIndex)index
-{
-    return _blocks[index.i][index.j][index.k].rotatingRotation;
-}
-
 - (BOOL)isRotatingAtIndex:(RCIndex)index
 {
-    return _blocks[index.i][index.j][index.k].isRotating;
-}
-
-- (void)setIsRotating:(BOOL)rotating AtIndex:(RCIndex)index
-{
-    _blocks[index.i][index.j][index.k].isRotating = rotating;
+    int convertedIndex = index.i*9 + index.j*3 +index.k;
+    RCAssert(convertedIndex<31, @"Bad index");
+    return [self getBit:[self.currentMove moveType] AtIndex:convertedIndex];
 }
 
 -(BOOL)isSetColorNeededAtIndex:(RCIndex)index

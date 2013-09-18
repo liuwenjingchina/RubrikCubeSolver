@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		D53BC6FD17D5936800640768 /* RCViewController+ViewTouchEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = D53BC6FC17D5936800640768 /* RCViewController+ViewTouchEvent.m */; };
+		D53D877117DCE79500EA8568 /* NSObject+RCUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = D53D877017DCE79500EA8568 /* NSObject+RCUtils.m */; };
 		D58DBEAC17D45D0400763E0E /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D58DBEA517D45D0400763E0E /* Default-568h@2x.png */; };
 		D58DBEAD17D45D0400763E0E /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = D58DBEA617D45D0400763E0E /* Default.png */; };
 		D58DBEAE17D45D0400763E0E /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D58DBEA717D45D0400763E0E /* Default@2x.png */; };
@@ -35,7 +36,7 @@
 		D5AFA00217D3CAE7009A41F4 /* RCViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D5AFA00117D3CAE7009A41F4 /* RCViewController.m */; };
 		D5AFA00517D3CB5A009A41F4 /* RCViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = D5AFA00417D3CB5A009A41F4 /* RCViewController_iPhone.xib */; };
 		D5AFA00717D3D010009A41F4 /* RCViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = D5AFA00617D3D010009A41F4 /* RCViewController_iPad.xib */; };
-		D5AFA00F17D3DC11009A41F4 /* RCCubeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D5AFA00E17D3DC11009A41F4 /* RCCubeManager.m */; };
+		D5AFA00F17D3DC11009A41F4 /* RCCube.m in Sources */ = {isa = PBXBuildFile; fileRef = D5AFA00E17D3DC11009A41F4 /* RCCube.m */; };
 		D5AFA01217D3E4F2009A41F4 /* RCCubeMoveManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D5AFA01117D3E4F2009A41F4 /* RCCubeMoveManager.m */; };
 		D5AFA01517D3E527009A41F4 /* RCCubeService.m in Sources */ = {isa = PBXBuildFile; fileRef = D5AFA01417D3E527009A41F4 /* RCCubeService.m */; };
 		D5AFA01817D3E552009A41F4 /* RCCubeRotationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D5AFA01717D3E552009A41F4 /* RCCubeRotationManager.m */; };
@@ -46,6 +47,7 @@
 		D5AFA03317D4389E009A41F4 /* Shader.vsh in Resources */ = {isa = PBXBuildFile; fileRef = D5AFA02D17D40488009A41F4 /* Shader.vsh */; };
 		D5AFA03617D4396A009A41F4 /* RCViewController+GLDraw.m in Sources */ = {isa = PBXBuildFile; fileRef = D5AFA03517D4396A009A41F4 /* RCViewController+GLDraw.m */; };
 		D5AFA03717D439C9009A41F4 /* RCViewControllerGLSetup.m in Sources */ = {isa = PBXBuildFile; fileRef = D5AFA02F17D42F9D009A41F4 /* RCViewControllerGLSetup.m */; };
+		D5EF6C1C17DB9911001437F1 /* RCMove.m in Sources */ = {isa = PBXBuildFile; fileRef = D5EF6C1B17DB9911001437F1 /* RCMove.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,6 +65,8 @@
 		D53BC6FB17D5936800640768 /* RCViewController+ViewTouchEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "RCViewController+ViewTouchEvent.h"; path = "RCViewController/RCViewController+ViewTouchEvent.h"; sourceTree = "<group>"; };
 		D53BC6FC17D5936800640768 /* RCViewController+ViewTouchEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "RCViewController+ViewTouchEvent.m"; path = "RCViewController/RCViewController+ViewTouchEvent.m"; sourceTree = "<group>"; };
 		D53BC70317D5A6BD00640768 /* RCCubeTouchManagerDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = RCCubeTouchManagerDelegate.h; path = RCCubeManager/RCCubeTouchManagerDelegate.h; sourceTree = "<group>"; };
+		D53D876F17DCE79500EA8568 /* NSObject+RCUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSObject+RCUtils.h"; path = "SupportingFiles/NSObject+RCUtils.h"; sourceTree = "<group>"; };
+		D53D877017DCE79500EA8568 /* NSObject+RCUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSObject+RCUtils.m"; path = "SupportingFiles/NSObject+RCUtils.m"; sourceTree = "<group>"; };
 		D58DBEA417D4448600763E0E /* RCCubeData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = RCCubeData.h; path = RCViewController/RCCubeData.h; sourceTree = "<group>"; };
 		D58DBEA517D45D0400763E0E /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "SupportingFiles/Default-568h@2x.png"; sourceTree = "<group>"; };
 		D58DBEA617D45D0400763E0E /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = SupportingFiles/Default.png; sourceTree = "<group>"; };
@@ -95,8 +99,8 @@
 		D5AFA00417D3CB5A009A41F4 /* RCViewController_iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = RCViewController_iPhone.xib; path = NibFiles/RCViewController_iPhone.xib; sourceTree = "<group>"; };
 		D5AFA00617D3D010009A41F4 /* RCViewController_iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = RCViewController_iPad.xib; path = NibFiles/RCViewController_iPad.xib; sourceTree = "<group>"; };
 		D5AFA00B17D3D578009A41F4 /* RCDebugMacro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RCDebugMacro.h; path = RCDebugLog/RCDebugMacro.h; sourceTree = "<group>"; };
-		D5AFA00D17D3DC11009A41F4 /* RCCubeManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RCCubeManager.h; path = RCCubeManager/RCCubeManager.h; sourceTree = "<group>"; };
-		D5AFA00E17D3DC11009A41F4 /* RCCubeManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RCCubeManager.m; path = RCCubeManager/RCCubeManager.m; sourceTree = "<group>"; };
+		D5AFA00D17D3DC11009A41F4 /* RCCube.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RCCube.h; path = RCCubeManager/RCCube.h; sourceTree = "<group>"; };
+		D5AFA00E17D3DC11009A41F4 /* RCCube.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RCCube.m; path = RCCubeManager/RCCube.m; sourceTree = "<group>"; };
 		D5AFA01017D3E4F2009A41F4 /* RCCubeMoveManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RCCubeMoveManager.h; path = RCCubeManager/RCCubeMoveManager.h; sourceTree = "<group>"; };
 		D5AFA01117D3E4F2009A41F4 /* RCCubeMoveManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RCCubeMoveManager.m; path = RCCubeManager/RCCubeMoveManager.m; sourceTree = "<group>"; };
 		D5AFA01317D3E527009A41F4 /* RCCubeService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RCCubeService.h; path = RCCubeManager/RCCubeService.h; sourceTree = "<group>"; };
@@ -115,6 +119,8 @@
 		D5AFA02F17D42F9D009A41F4 /* RCViewControllerGLSetup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RCViewControllerGLSetup.m; path = RCViewController/RCViewControllerGLSetup.m; sourceTree = "<group>"; };
 		D5AFA03417D4396A009A41F4 /* RCViewController+GLDraw.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "RCViewController+GLDraw.h"; path = "RCViewController/RCViewController+GLDraw.h"; sourceTree = "<group>"; };
 		D5AFA03517D4396A009A41F4 /* RCViewController+GLDraw.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "RCViewController+GLDraw.m"; path = "RCViewController/RCViewController+GLDraw.m"; sourceTree = "<group>"; };
+		D5EF6C1A17DB9911001437F1 /* RCMove.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RCMove.h; path = RCCubeManager/RCMove.h; sourceTree = "<group>"; };
+		D5EF6C1B17DB9911001437F1 /* RCMove.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RCMove.m; path = RCCubeManager/RCMove.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -203,6 +209,8 @@
 				D58DBEA717D45D0400763E0E /* Default@2x.png */,
 				D58DBEA817D45D0400763E0E /* main.m */,
 				D58DBEA917D45D0400763E0E /* RCTypes.h */,
+				D53D876F17DCE79500EA8568 /* NSObject+RCUtils.h */,
+				D53D877017DCE79500EA8568 /* NSObject+RCUtils.m */,
 				D5AF9FC317D3C79C009A41F4 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
@@ -271,8 +279,8 @@
 		D5AFA00C17D3DBD8009A41F4 /* RCCubeManager */ = {
 			isa = PBXGroup;
 			children = (
-				D5AFA00D17D3DC11009A41F4 /* RCCubeManager.h */,
-				D5AFA00E17D3DC11009A41F4 /* RCCubeManager.m */,
+				D5AFA00D17D3DC11009A41F4 /* RCCube.h */,
+				D5AFA00E17D3DC11009A41F4 /* RCCube.m */,
 				D53BC6E817D574CE00640768 /* RCCubeServiceDelegate.h */,
 				D5AFA01317D3E527009A41F4 /* RCCubeService.h */,
 				D5AFA01417D3E527009A41F4 /* RCCubeService.m */,
@@ -281,6 +289,8 @@
 				D5AFA01117D3E4F2009A41F4 /* RCCubeMoveManager.m */,
 				D5AFA01617D3E552009A41F4 /* RCCubeRotationManager.h */,
 				D5AFA01717D3E552009A41F4 /* RCCubeRotationManager.m */,
+				D5EF6C1A17DB9911001437F1 /* RCMove.h */,
+				D5EF6C1B17DB9911001437F1 /* RCMove.m */,
 				D53BC70317D5A6BD00640768 /* RCCubeTouchManagerDelegate.h */,
 				D5AFA01917D3E569009A41F4 /* RCCubeTouchManager.h */,
 				D5AFA01A17D3E569009A41F4 /* RCCubeTouchManager.m */,
@@ -425,7 +435,7 @@
 				D58DBEBF17D45FA300763E0E /* main.m in Sources */,
 				D5AF9FFE17D3CABD009A41F4 /* RCAppDelegate.m in Sources */,
 				D5AFA00217D3CAE7009A41F4 /* RCViewController.m in Sources */,
-				D5AFA00F17D3DC11009A41F4 /* RCCubeManager.m in Sources */,
+				D5AFA00F17D3DC11009A41F4 /* RCCube.m in Sources */,
 				D5AFA01217D3E4F2009A41F4 /* RCCubeMoveManager.m in Sources */,
 				D5AFA01517D3E527009A41F4 /* RCCubeService.m in Sources */,
 				D5AFA01817D3E552009A41F4 /* RCCubeRotationManager.m in Sources */,
@@ -435,6 +445,8 @@
 				D5AFA03717D439C9009A41F4 /* RCViewControllerGLSetup.m in Sources */,
 				D5AFA03617D4396A009A41F4 /* RCViewController+GLDraw.m in Sources */,
 				D53BC6FD17D5936800640768 /* RCViewController+ViewTouchEvent.m in Sources */,
+				D5EF6C1C17DB9911001437F1 /* RCMove.m in Sources */,
+				D53D877117DCE79500EA8568 /* NSObject+RCUtils.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -499,11 +511,12 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SYMROOT = build/Product;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
 		};
@@ -522,12 +535,13 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				SDKROOT = iphoneos;
 				SYMROOT = build/Product;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;
 		};
@@ -537,7 +551,11 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "RubrikCubeSolver/RubrikCubeSolver-Prefix.pch";
 				INFOPLIST_FILE = "RubrikCubeSolver/RubrikCubeSolver-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = RC;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -548,7 +566,11 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "RubrikCubeSolver/RubrikCubeSolver-Prefix.pch";
 				INFOPLIST_FILE = "RubrikCubeSolver/RubrikCubeSolver-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = RC;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

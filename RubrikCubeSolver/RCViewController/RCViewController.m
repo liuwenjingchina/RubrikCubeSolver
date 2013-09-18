@@ -7,7 +7,7 @@
 //
 
 #import "RCViewController.h"
-#import "RCCubeManager.h"
+#import "RCCube.h"
 @interface RCViewController()
 {
     UILabel *_fpsLabel;
@@ -22,7 +22,7 @@
     RCViewController *viewController = [super alloc];
     
     // cubeManager alloc
-    RCCubeManager *cubeManager = [RCCubeManager alloc];
+    RCCube *cubeManager = [RCCube alloc];
     viewController.cubeManager = cubeManager;
     return viewController;
 }
@@ -63,6 +63,11 @@
     [self _setupOpenGL];
     [_cubeManager setVisibility:YES];
     [_cubeManager setCubeRotationSpeed:1];
+    [_cubeManager commitMove:RCMoveL];
+    [_cubeManager commitMove:RCMoveL];
+    [_cubeManager commitMove:RCMoveL];
+    [_cubeManager commitMove:RCMoveL];
+    [_cubeManager commitMove:RCMoveL];
     // first time need to clear the screen
     _clearScreen = YES;
 }

@@ -7,7 +7,7 @@
 //
 
 #import "RCViewController+GLDraw.h"
-#import "RCCubeManager.h"
+#import "RCCube.h"
 @implementation RCViewController (GLDraw)
 - (void)glkView:(GLKView *)view drawInRect:(CGRect)rect
 {

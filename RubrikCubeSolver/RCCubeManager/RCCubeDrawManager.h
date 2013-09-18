@@ -10,11 +10,14 @@
 @class RCBlockService,
 RCCubeService,
 RCCubeService,
-RCCubeRotationManager;
+RCCubeRotationManager,
+RCCubeTouchManager;
 @interface RCCubeDrawManager : NSObject
 @property (weak, atomic) RCBlockService *BlockService;
 @property (weak, atomic) RCCubeService *CubeService;
-@property (strong, nonatomic) RCCubeRotationManager *CubeRotationManager;
+//@property (strong, nonatomic) RCCubeRotationManager *CubeRotationManager;
+//@property (weak, atomic)RCCubeTouchManager *CubeTouchManager;
+
 -(void)drawInRect:(CGRect)rect;
 
 @end

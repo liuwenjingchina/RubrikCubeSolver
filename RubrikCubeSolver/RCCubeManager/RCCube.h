@@ -17,19 +17,13 @@ RCCubeTouchManager,
 RCCubeDrawManager,
 RCBlockService;
 
-@interface RCCubeManager : NSObject
-@property (strong, atomic) RCCubeService* cubeService;
-@property (strong, nonatomic) RCCubeMoveManager *cubeMoveManager;
-@property (weak, nonatomic) RCCubeRotationManager *CubeRotationManager;
-@property (strong, nonatomic) RCCubeTouchManager *cubeTouchManager;
-@property (strong, nonatomic) RCCubeDrawManager *cubeDrawManager;
-@property (weak, atomic) RCBlockService *BlockService;
+@interface RCCube : NSObject
 @property (strong, nonatomic) EAGLContext *context;
 
 -(void)setCubePosition:(RCPosition)position;
 -(void)setCubeRotation:(RCRotation)rotation;
 -(void)setCubeRotationSpeed:(RCSpeed)speed;
--(void)commitMove:(RCMove)move;
+-(void)commitMove:(RCMoveDescriptor)move;
 -(void)drawInRect:(CGRect)rect;
 -(void)setVisibility:(BOOL)visibility;
 -(BOOL)isVisible;

@@ -11,10 +11,14 @@
 #import "RCCubeService.h"
 #import "RCCubeRotationManager.h"
 #import <GLKit/GLKit.h>
+#import "RCMove.h"
+#import "RCCubeTouchManager.h"
 @interface RCCubeDrawManager()
 {
     BOOL _firstDraw;
 }
+
+-(BOOL)_shouldDraw;
 @end
 
 @implementation RCCubeDrawManager
@@ -28,11 +32,15 @@
 
 -(void)drawInRect:(CGRect)rect
 {
-    // if no update to draw and we have already drawn once of the same thing
-    if (!_firstDraw && !_CubeRotationManager.hasUpdate) return;
-    _firstDraw = NO; //have already drawn
-    [_CubeRotationManager setHasUpdate:NO];
+    // if no need to draw, don't draw
+    if(![self _shouldDraw]) {
+        return;
+    }
     
+    // Post a broadcast a notification of drawing start
+    [_CubeService notifyCubeWillDraw];
+    
+    // Clean screen
     glClearColor(1, 1, 1, 1);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     
@@ -52,20 +60,23 @@
                 // Block Level
                 RCRotation rotation;
                 RCPosition position;
-                if ([_BlockService isRotatingAtIndex:index]) {
-                    position = [_BlockService getRotatingPositionAtIndex:index];
-                    rotation = [_BlockService getRotatingRotationAtIndex:index];
-                } else {
-                    position = [_BlockService getStillPositionAtIndex:index];
-                    rotation = [_BlockService getStillRotationAtIndex:index];
-                }
-                
+                position = [_BlockService getStillPositionAtIndex:index];
+                rotation = [_BlockService getStillRotationAtIndex:index];
                 GLKMatrix4 blockPositionMatrix = GLKMatrix4MakeTranslation(position.x, position.y, position.z);
                 GLKMatrix4 blockMatrix = blockPositionMatrix;
                 
                 if (rotation.x || rotation.y || rotation.z) {
                     GLKMatrix4 blockRotationMatrix = GLKMatrix4MakeRotation(1, rotation.x, rotation.y, rotation.z);
                     blockMatrix = GLKMatrix4Multiply(blockRotationMatrix, blockMatrix);
+                }
+                
+                // Move Rotation Level
+                if([self.BlockService isRotatingAtIndex:index]){
+                    RCMove *move = [self.BlockService currentMove];
+                    RCAssert(move, @"no move but move rotating");
+                    RCRotation rotation = [move rotation];
+                    GLKMatrix4 moveRotationMatrix = GLKMatrix4MakeRotation(GLKMathDegreesToRadians(90)*move.completeness, rotation.x, rotation.y, rotation.z);
+                    blockMatrix = GLKMatrix4Multiply(moveRotationMatrix, blockMatrix);
                 }
                 
                 // Cube Level
@@ -99,6 +110,36 @@
             }
         }
     }
+    // Notify cube has been drawn
+    [_CubeService notifyCubeDidDraw];
 }
+
+-(BOOL)_shouldDraw
+{
+    //If not visible, should not draw
+    if (![_CubeService visibility]) {
+        return NO;
+    }
+    //If it is the first time, should draw
+    if (_firstDraw) {
+        _firstDraw = NO;
+        return YES;
+    }
+    //If cube is self rotating, should draw
+    if ([_CubeService cubeRotationSpeed]!=0) {
+        return YES;
+    }
+    //If touched, should draw
+    if ([self.CubeService isTouching]){
+        return YES;
+    }
+    //If cube is doing a move, should draw
+    if ([self.CubeService currentMove].moveType!=RCMoveStill) {
+        return YES;
+    }
+    //Else no need to draw
+    return NO;
+}
+
 
 @end

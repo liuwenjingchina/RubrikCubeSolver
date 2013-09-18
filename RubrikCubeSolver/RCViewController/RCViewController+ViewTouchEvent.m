@@ -7,7 +7,7 @@
 //
 
 #import "RCViewController+ViewTouchEvent.h"
-#import "RCCubeManager.h"
+#import "RCCube.h"
 @implementation RCViewController (ViewTouchEvent)
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {

@@ -17,4 +17,8 @@ typedef enum RCCubeServiceChange {
 @protocol RCCubeServiceDelegate <NSObject>
 @optional
 -(void)cubeService:(RCCubeService *)cubeService NotifyChange:(RCCubeServiceChange)change;
+-(void)cubeServiceWillDraw:(RCCubeService *)cubeService;
+-(void)cubeServiceDidDraw:(RCCubeService *)cubeService;
+-(void)cubeServiceDidFinishCurrentMove:(RCCubeService *)cubeService;
+-(void)cubeServiceWillStartMove:(RCCubeService *)cubeService;
 @end

@@ -30,5 +30,6 @@ typedef struct RCIndex{
 typedef float RCSpeed;
 typedef enum RCMove {
     RCMoveStill = 0x00000000,
-}RCMove;
+    RCMoveL     = 0x49249249,
+}RCMoveDescriptor;
 #endif

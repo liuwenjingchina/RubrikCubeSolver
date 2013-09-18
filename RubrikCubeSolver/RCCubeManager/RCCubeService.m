@@ -15,13 +15,14 @@
 #import "RCCubeServiceDelegate.h"
 @interface RCCubeService()
 {
-    BOOL _visibility;
     RCSpeed _cubeRotationSpeed;
 }
 @property(strong, nonatomic)NSMutableArray *Delegates;
 @end
 
 @implementation RCCubeService
+@synthesize currentMove=_currentMove;
+@synthesize visibility=_visibility;
 +(id)alloc
 {
     // self alloc
@@ -69,7 +70,9 @@
     
     // Notify Visibility change
     for (id<RCCubeServiceDelegate>delegate in _Delegates) {
-        [delegate cubeService:self NotifyChange:RCCubeServiceChangeCubeVisibility];
+        if ([delegate respondsToSelector:@selector(cubeService:NotifyChange:)]){
+            [delegate cubeService:self NotifyChange:RCCubeServiceChangeCubeVisibility];
+        }
     }
 }
 
@@ -79,7 +82,9 @@
     
     //Notify RotationSpeed change
     for (id<RCCubeServiceDelegate>delegate in _Delegates) {
-        [delegate cubeService:self NotifyChange:RCCubeServiceChangeCubeRotationSpeed];
+        if ([delegate respondsToSelector:@selector(cubeService:NotifyChange:)]){
+            [delegate cubeService:self NotifyChange:RCCubeServiceChangeCubeRotationSpeed];
+        }
     }
 }
 
@@ -98,4 +103,49 @@
     [_Delegates removeObject:object];
 }
 
+-(void)setCurrentMove:(RCMove *)currentMove
+{
+    self.blockService.currentMove = currentMove;
+}
+
+- (RCMove *)currentMove
+{
+    return self.blockService.currentMove;
+}
+
+-(void)notifyCubeWillDraw
+{
+    for (id<RCCubeServiceDelegate>delegate in _Delegates) {
+            if ([delegate respondsToSelector:@selector(cubeServiceWillDraw:)]){
+                    [delegate cubeServiceWillDraw:self];
+            }
+    }
+}
+
+-(void)notifyCubeDidDraw
+{
+    for (id<RCCubeServiceDelegate>delegate in _Delegates) {
+        if ([delegate respondsToSelector:@selector(cubeServiceDidDraw:)]){
+                [delegate cubeServiceDidDraw:self];
+        }
+    }
+}
+
+-(void)notifyCubeDidFinishCurrentMove
+{
+    for (id<RCCubeServiceDelegate>delegate in _Delegates) {
+        if ([delegate respondsToSelector:@selector(cubeServiceDidFinishCurrentMove:)]){
+            [delegate cubeServiceDidFinishCurrentMove:self];
+        }
+    }
+}
+
+-(void)notifyCubeWillStartMove
+{
+    for (id<RCCubeServiceDelegate>delegate in _Delegates) {
+        if ([delegate respondsToSelector:@selector(cubeServiceWillStartMove:)]){
+            [delegate cubeServiceWillStartMove:self];
+        }
+    }
+}
 @end

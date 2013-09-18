@@ -10,6 +10,7 @@
 @class RCCubeService;
 @interface RCCubeTouchManager : NSObject
 @property (weak, atomic)RCCubeService *CubeService;
+@property BOOL isTouching;
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event;
 -(void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event;
 -(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event;

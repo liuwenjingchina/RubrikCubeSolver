@@ -7,7 +7,7 @@
 //
 
 #import "RCViewController.h"
-#import "RCCubeManager.h"
+#import "RCCube.h"
 #import "RCCubeData.h"
 
 
