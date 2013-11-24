@@ -7,7 +7,7 @@
 //
 
 #import "RCViewController.h"
-#import "RCCubeManager.h"
+#import "RCCube.h"
 #import "RCCubeData.h"
 
 
@@ -50,6 +50,9 @@
     
     glEnableVertexAttribArray(GLKVertexAttribColor);
     glVertexAttribPointer(GLKVertexAttribColor,3, GL_FLOAT, GL_FALSE, 0,BUFFER_OFFSET(0));
+
+    // set refresh rate
+    self.preferredFramesPerSecond = FRAME_REFRESH_RATE;
 }
 
 - (BOOL)_loadShaders
@@ -215,5 +218,7 @@
         _program = 0;
     }
 }
+
+
 
 @end

@@ -8,14 +8,17 @@
 
 #import <UIKit/UIKit.h>
 #import <GLKit/GLKit.h>
-@class RCCubeManager;
+@class RCCube;
 @interface RCViewController : GLKViewController
 {
     GLuint _program;
     GLuint _vertexBuffer;
     GLuint _colorBuffer;
+    NSInteger _frameCounter;
+    BOOL _clearScreen;
 }
-@property (strong, nonatomic) RCCubeManager *cubeManager;
+@property (strong, nonatomic) RCCube *cubeManager;
+- (void)_fpstimeout;
 
 @end
 

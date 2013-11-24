@@ -14,8 +14,6 @@
 #import <UIKit/UIKit.h>
 #import <Foundation/Foundation.h>
 #import "RCDebugLog/RCDebugMacro.h"
-#import "RCTypes.h"
-
 // Uniform index.
 enum
 {
@@ -36,5 +34,8 @@ enum
 
 //Macros
 #define BUFFER_OFFSET(i) ((char *)NULL + (i))
+
+#define DATA_REFRESH_RATE 60.0f
+#define FRAME_REFRESH_RATE 60.0f
 
 #endif

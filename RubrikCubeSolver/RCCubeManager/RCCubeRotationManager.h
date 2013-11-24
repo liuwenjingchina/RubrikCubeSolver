@@ -7,9 +7,17 @@
 //
 
 #import <Foundation/Foundation.h>
-@class RCBlockService;
-@interface RCCubeRotationManager : NSObject
-
-@property (weak, atomic)RCBlockService *BlockManager;
-
+#import "RCBaseClass.h"
+#import "RCCubeServiceDelegate.h"
+#import "RCCubeTouchManagerDelegate.h"
+@class RCCubeMoveManager,
+RCBlockService,
+RCCubeService,
+RCMove;
+@interface RCCubeRotationManager : RCBaseClass<RCCubeServiceDelegate,RCCubeTouchManagerDelegate>
+//@property (weak, nonatomic)RCCubeMoveManager *CubeMoveManager;
+@property (weak, atomic)RCBlockService *BlockService;
+@property (weak, atomic)RCCubeService *CubeService;
+@property BOOL hasUpdate;
+@property (strong, atomic)RCMove *currentMove;
 @end

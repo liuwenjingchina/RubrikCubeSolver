@@ -8,12 +8,39 @@
 
 #import "RCCubeDrawManager.h"
 #import "RCBlockService.h"
+#import "RCCubeService.h"
+#import "RCCubeRotationManager.h"
 #import <GLKit/GLKit.h>
+#import "RCMove.h"
+#import "RCCubeTouchManager.h"
+@interface RCCubeDrawManager()
+{
+    BOOL _firstDraw;
+}
 
+-(BOOL)_shouldDraw;
+@end
 
 @implementation RCCubeDrawManager
+- (id)init
+{
+    self = [super init];
+    RCAssert(self, @"init failure");
+    _firstDraw = YES;
+    return self;
+}
+
 -(void)drawInRect:(CGRect)rect
 {
+    // if no need to draw, don't draw
+    if(![self _shouldDraw]) {
+        return;
+    }
+    
+    // Post a broadcast a notification of drawing start
+    [_CubeService notifyCubeWillDraw];
+    
+    // Clean screen
     glClearColor(1, 1, 1, 1);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     
@@ -30,31 +57,56 @@
                 index.j = j;
                 index.k = k;
                 
-                // Cube Level
-                RCRotation rotation;
+                GLKMatrix4 blockMatrix = GLKMatrix4MakeTranslation(0, 0, 0);
+                
+                // Block Rotation Level
+                GLKMatrix4 blockRotationMatrix;
+                blockRotationMatrix = [_BlockService getStillRotationAtIndex:index];
+                blockMatrix = GLKMatrix4Multiply(blockRotationMatrix, blockMatrix);
+                
+                // Block Position Level
                 RCPosition position;
-                if ([_BlockManager isRotatingAtIndex:index]) {
-                    position = [_BlockManager getRotatingPositionAtIndex:index];
-                    rotation = [_BlockManager getRotatingRotationAtIndex:index];
-                } else {
-                    position = [_BlockManager getStillPositionAtIndex:index];
-                    rotation = [_BlockManager getStillRotationAtIndex:index];
+                position = [_BlockService getStillPositionAtIndex:index];
+                GLKMatrix4 blockPositionMatrix = GLKMatrix4MakeTranslation(position.x, position.y, position.z);
+                blockMatrix = GLKMatrix4Multiply(blockPositionMatrix, blockMatrix);
+                
+                // Move Rotation Level
+                if([self.BlockService isRotatingAtIndex:index]){
+                    RCMove *move = [self.BlockService currentMove];
+                    RCAssert(move, @"no move but move rotating");
+                    RCStillRotation rotation = [move rotation];
+                    GLKMatrix4 moveRotationMatrix;
+                    moveRotationMatrix = GLKMatrix4MakeRotation(GLKMathDegreesToRadians(90)*move.completeness*rotation.x, 1, 0, 0);
+                    blockMatrix = GLKMatrix4Multiply(moveRotationMatrix, blockMatrix);
+                    
+                    moveRotationMatrix = GLKMatrix4MakeRotation(GLKMathDegreesToRadians(90)*move.completeness*rotation.y, 0, 1, 0);
+                    blockMatrix = GLKMatrix4Multiply(moveRotationMatrix, blockMatrix);
+                    
+                    moveRotationMatrix = GLKMatrix4MakeRotation(GLKMathDegreesToRadians(90)*move.completeness*rotation.z, 0, 0, 1);
+                    blockMatrix = GLKMatrix4Multiply(moveRotationMatrix, blockMatrix);
                 }
                 
-                GLKMatrix4 cubePositionMatrix = GLKMatrix4MakeTranslation(position.x, position.y, position.z);
-                GLKMatrix4 cubeMatrix = cubePositionMatrix;
-                
-                if (rotation.x || rotation.y || rotation.z) {
-                    GLKMatrix4 cubeRotationMatrix = GLKMatrix4MakeRotation(1, rotation.x, rotation.y, rotation.z);
-                    cubeMatrix = GLKMatrix4Multiply(cubeRotationMatrix, cubeMatrix);
+                // Cube Level
+                GLKMatrix4 cubeMatrix = GLKMatrix4MakeTranslation(0, 0, 0);
+                float rotationChange = _CubeService.cubeRotation.y;
+                if (rotationChange) {
+                    cubeMatrix = GLKMatrix4MakeRotation(rotationChange, 0, 1, 0);
                 }
                 
-                GLKMatrix4 viewMatrix = GLKMatrix4MakeLookAt(6/1.5, 4/1.5, 9/1.5, 0, 0, 0, 0, 1, 0);
-                GLKMatrix4 worldMatrix = GLKMatrix4MakeTranslation(0, 0.2, 0);
+                // World Level
+                RCPosition cubePosition = _CubeService.cubePosition;
+                GLKMatrix4 worldMatrix = GLKMatrix4MakeTranslation(cubePosition.x, cubePosition.y, cubePosition.z);
+                
+                // Camera Level
+                GLKMatrix4 cameraMatrix = GLKMatrix4MakeLookAt(6/1.5, 4/1.5, 9/1.5, 0, 0, 0, 0, 1, 0);
                 
                 // Assemble Levels
-                GLKMatrix4 modelViewMatrix = GLKMatrix4Multiply(worldMatrix, cubeMatrix);
-                modelViewMatrix = GLKMatrix4Multiply(viewMatrix, modelViewMatrix);
+                GLKMatrix4 modelViewMatrix = blockMatrix;
+                modelViewMatrix = GLKMatrix4Multiply(cubeMatrix, modelViewMatrix);
+                modelViewMatrix = GLKMatrix4Multiply(worldMatrix, modelViewMatrix);
+                modelViewMatrix = GLKMatrix4Multiply(cameraMatrix, modelViewMatrix);
+                
+                // Final Matrices
                 GLKMatrix3 normalMatrix = GLKMatrix3InvertAndTranspose(GLKMatrix4GetMatrix3(modelViewMatrix), NULL);
                 modelViewMatrix = GLKMatrix4Multiply(projectionMatrix, modelViewMatrix);
                 
@@ -65,6 +117,36 @@
             }
         }
     }
-
+    // Notify cube has been drawn
+    [_CubeService notifyCubeDidDraw];
 }
+
+-(BOOL)_shouldDraw
+{
+    //If not visible, should not draw
+    if (![_CubeService visibility]) {
+        return NO;
+    }
+    //If it is the first time, should draw
+    if (_firstDraw) {
+        _firstDraw = NO;
+        return YES;
+    }
+    //If cube is self rotating, should draw
+    if ([_CubeService cubeRotationSpeed]!=0) {
+        return YES;
+    }
+    //If touched, should draw
+    if ([self.CubeService isTouching]){
+        return YES;
+    }
+    //If cube is doing a move, should draw
+    if ([self.CubeService currentMove].moveType!=RCMoveStill) {
+        return YES;
+    }
+    //Else no need to draw
+    return NO;
+}
+
+
 @end
