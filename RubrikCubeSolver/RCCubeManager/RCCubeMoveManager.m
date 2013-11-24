@@ -11,10 +11,13 @@
 #import "RCCubeService.h"
 #import "RCBlockService.h"
 #import "RCMove.h"
+#import "NSObject+RCUtils.h"
+#import <GLKit/GLKit.h>
+
 @interface RCCubeMoveManager()
 @property (strong, atomic)NSMutableArray *moves;
 -(RCMove *) _queueOutMove;
--(void)_completeMove:(RCMoveDescriptor)move;
+-(void)_completeMove:(RCMove *)move;
 @end
 @implementation RCCubeMoveManager
 +(id)alloc
@@ -82,7 +85,7 @@
 {
     [self.BlockService setCurrentMove:nil];
     // Complete Actual Block Rotation
-    [self _completeMove:endMove.moveType];
+    [self _completeMove:endMove];
 }
 
 -(void)setCurrentMove:(RCMove *)currentMove
@@ -90,9 +93,33 @@
     [self.BlockService setCurrentMove:currentMove];
 }
 
--(void)_completeMove:(RCMoveDescriptor)move
+-(void)_completeMove:(RCMove *)move
 {
+    RCBlock oldMovingBLocks[9];
+    int count = 0;
+
+    // Pick out the cube we want to change
+    int i, j ,k;
+    for (i=0; i<3; i++) {
+        for (j=0; j<3; j++) {
+            for (k=0; k<3; k++) {
+                if ([self getBit:move.moveType AtIndex:i*9+j*3+k]) {
+                    RCIndex index = [self makeIndexI:i J:j K:k];
+                    oldMovingBLocks[count] = [self.BlockService getBlockAtIndex:index];
+                    count++;
+                }
+            }
+        }
+    }
     
+    // Apply rotation on block level
+    /*
+    RCRotation rotation = move.rotation;
+    for (i=0; i<count; i++) {
+        RCRotation oldRotation = oldMovingBLocks[i].stillRotation;
+        oldMovingBLocks[i].stillRotation = GLKMatrix4Multiply(rotation, oldRotation);
+    }
+    */
 }
 
 @end

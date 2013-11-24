@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "RCBlock.h"
 @class RCMove;
 @interface RCBlockService : NSObject
 @property (strong, atomic) RCMove *currentMove;
@@ -17,6 +18,8 @@
 - (RCPosition)getRotatingPositionAtIndex:(RCIndex)index;
 - (void)setStillRotation:(RCRotation) rotation AtIndex:(RCIndex) index;
 - (RCRotation)getStillRotationAtIndex:(RCIndex)index;
+- (RCBlock)getBlockAtIndex:(RCIndex)index;
+- (void)setBlock:(RCBlock)block AtIndex:(RCIndex)index;
 
 - (BOOL)isRotatingAtIndex:(RCIndex)index;
 - (BOOL)isSetColorNeededAtIndex:(RCIndex)index;

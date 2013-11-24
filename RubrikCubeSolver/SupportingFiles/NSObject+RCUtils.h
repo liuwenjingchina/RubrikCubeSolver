@@ -13,4 +13,6 @@
 
 - (unsigned char) getBit:(int32_t)bits AtIndex:(int)index;
 
+-(RCIndex)makeIndexI:(int)i J:(int)j K:(int)k;
+
 @end
