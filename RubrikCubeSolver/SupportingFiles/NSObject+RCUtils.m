@@ -18,15 +18,6 @@
     return rotation;
 }
 
--(RCIndex)makeIndexI:(int)i J:(int)j K:(int)k
-{
-    RCIndex index;
-    index.i = i;
-    index.j = j;
-    index.k = k;
-    return index;
-}
-
 -(unsigned char)getBit:(int32_t)bits AtIndex:(int)index
 {
     index %= 32;
