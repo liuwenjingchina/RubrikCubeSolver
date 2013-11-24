@@ -16,9 +16,9 @@ typedef struct RCPosition{
 } RCPosition;
 
 typedef struct RCRotation {
-    float x;
-    float y;
-    float z;
+    unsigned char x;
+    unsigned char y;
+    unsigned char z;
 } RCRotation;
 
 typedef struct RCIndex{
@@ -28,7 +28,7 @@ typedef struct RCIndex{
 }RCIndex;
 
 typedef float RCSpeed;
-typedef enum RCMove {
+typedef enum RCMoveDescriptor {
     RCMoveStill = 0x00000000,
     RCMoveL     = 0x49249249,
 }RCMoveDescriptor;

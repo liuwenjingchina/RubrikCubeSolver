@@ -57,25 +57,32 @@
                 index.j = j;
                 index.k = k;
                 
-                // Block Level
-                RCRotation rotation;
+                GLKMatrix4 blockMatrix = GLKMatrix4MakeTranslation(0, 0, 0);
+                
+                // Block Rotation Level
+                GLKMatrix4 blockRotationMatrix;
+                blockRotationMatrix = [_BlockService getStillRotationAtIndex:index];
+                blockMatrix = GLKMatrix4Multiply(blockRotationMatrix, blockMatrix);
+                
+                // Block Position Level
                 RCPosition position;
                 position = [_BlockService getStillPositionAtIndex:index];
-                rotation = [_BlockService getStillRotationAtIndex:index];
                 GLKMatrix4 blockPositionMatrix = GLKMatrix4MakeTranslation(position.x, position.y, position.z);
-                GLKMatrix4 blockMatrix = blockPositionMatrix;
-                
-                if (rotation.x || rotation.y || rotation.z) {
-                    GLKMatrix4 blockRotationMatrix = GLKMatrix4MakeRotation(1, rotation.x, rotation.y, rotation.z);
-                    blockMatrix = GLKMatrix4Multiply(blockRotationMatrix, blockMatrix);
-                }
+                blockMatrix = GLKMatrix4Multiply(blockPositionMatrix, blockMatrix);
                 
                 // Move Rotation Level
                 if([self.BlockService isRotatingAtIndex:index]){
                     RCMove *move = [self.BlockService currentMove];
                     RCAssert(move, @"no move but move rotating");
-                    RCRotation rotation = [move rotation];
-                    GLKMatrix4 moveRotationMatrix = GLKMatrix4MakeRotation(GLKMathDegreesToRadians(90)*move.completeness, rotation.x, rotation.y, rotation.z);
+                    RCStillRotation rotation = [move rotation];
+                    GLKMatrix4 moveRotationMatrix;
+                    moveRotationMatrix = GLKMatrix4MakeRotation(GLKMathDegreesToRadians(90)*move.completeness*rotation.x, 1, 0, 0);
+                    blockMatrix = GLKMatrix4Multiply(moveRotationMatrix, blockMatrix);
+                    
+                    moveRotationMatrix = GLKMatrix4MakeRotation(GLKMathDegreesToRadians(90)*move.completeness*rotation.y, 0, 1, 0);
+                    blockMatrix = GLKMatrix4Multiply(moveRotationMatrix, blockMatrix);
+                    
+                    moveRotationMatrix = GLKMatrix4MakeRotation(GLKMathDegreesToRadians(90)*move.completeness*rotation.z, 0, 0, 1);
                     blockMatrix = GLKMatrix4Multiply(moveRotationMatrix, blockMatrix);
                 }
                 

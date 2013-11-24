@@ -22,6 +22,7 @@
     float _touchMoveDistance;
 }
 -(RCSpeed)_add:(RCSpeed)speed1 with:(RCSpeed)speed2;
+-(void)updateCubeLevelRotation;
 @end
 
 @implementation RCCubeRotationManager
@@ -40,60 +41,23 @@
     return self;
 }
 
-/*
- @brief
- Determine what it should do during update
- */
-/*
--(void)cubeService:(RCCubeService *)cubeService NotifyChange:(RCCubeServiceChange)change
-{
-    BOOL visibility = [cubeService visibility];
-
-    // If visible
-    if (visibility) {
-        // and is doing rotation
-        _cubeRotationUpdateNeeded = [cubeService cubeRotationSpeed]==0? NO:YES;
-        
-        // and is committing a move
-        _moveRotationUpdateNeeded = self.currentMove.moveType==RCMoveStill? NO:YES;
-    }else {
-    // Not visible no need to update anything
-        _cubeRotationUpdateNeeded = NO;
-        _moveRotationUpdateNeeded = NO;
-    }
-    
-    // If anything needs to be updated frequently, register a timer to _update
-    if (_cubeRotationUpdateNeeded||_moveRotationUpdateNeeded||!_isTouching) {
-        if (!_updateTimer || !_updateTimer.isValid) {
-            
-            RCLog(@"Register update timer");
-            _updateTimer = [NSTimer timerWithTimeInterval:1/DATA_REFRESH_RATE target:self selector:@selector(_update) userInfo:nil repeats:YES];
-            [[NSRunLoop currentRunLoop] addTimer:_updateTimer forMode:NSDefaultRunLoopMode];
-            _startTime = NULL;
-            _endTime = NULL;
-        }
-    }else { // Else no need to register a timer to _update
-        if (_updateTimer) {
-            RCLog(@"Unregister update timer");
-            [_updateTimer invalidate];
-            _updateTimer = NULL;
-            _startTime = NULL;
-            _endTime = NULL;
-        }
-    }
-}
-*/
 - (void)cubeServiceWillDraw:(RCCubeService *)cubeService
+{
+    [self updateCubeLevelRotation];
+}
+
+-(void)updateCubeLevelRotation
 {
     if (!_startTime) {
         /* If it is the first time coming into update, we will not do anything, since update needs to calculate the time difference between last update the this update, we donot have last time value.
          */
         // Record the time it entered.
-        RCLog(@"First Time Enter");
         _startTime = [NSDate date];
         return;
     }
     
+    
+    /****************************** Updating current cube level rotation *****************************/
     // Calculate time difference
     _endTime = [NSDate date];
     NSTimeInterval timeDiff = [_endTime timeIntervalSinceDate:_startTime];
@@ -102,9 +66,10 @@
     // Get current rotation
     RCRotation curRotation, newRotation;
     curRotation = [_CubeService cubeRotation];
-        
+    newRotation.x = 0;
+    newRotation.z = 0;
     // Update rotation
-    if (!_isTouching) {
+    if (!self.CubeService.isTouching) {
         // Calculate rotation based on speed if no touching screen
         RCSpeed curSpeed;
         curSpeed = [_CubeService cubeRotationSpeed];
@@ -139,13 +104,16 @@
     
     // Update the cube rotation based on the calculation above
     [_CubeService setCubeRotation:newRotation];
-
     
-    [self.CubeService notifyCubeWillStartMove];
     
+    
+    
+    
+    /************************************ Updating move completeness *********************************/
+    // If have current move update
     if ([self.CubeService currentMove]) {
         // Update completeness
-        self.CubeService.currentMove.completeness += 0.01;
+        self.CubeService.currentMove.completeness += 0.05;
         
         if (self.CubeService.currentMove.completeness>=1) {
             // If has completed end the move
@@ -153,6 +121,12 @@
             //[_CubeMoveManager endMove:_currentMove];
         }
     }
+    
+    // If not have current move start new move
+    else if(self.CubeService.pendingMoves){
+        [self.CubeService notifyCubeStartNewMove];
+    }
+
 }
 
 - (void)cubeTouchManager:(RCCubeTouchManager *)cubeTouchManager NotifyTouchBegin:(NSSet *)touchs
@@ -160,14 +134,14 @@
     /* If is touching we will call update based on touch move notification 
      instead of using time to update.
      */
-    _isTouching = YES;
+    _touchMoveDistance = 0;
 }
 
 - (void)cubeTouchManager:(RCCubeTouchManager *)cubeTouchManager NotifyTouchEnd:(NSSet *)touchs
 {
     /* If not touch anymore we should judge whether we need to register a timer update now.
      */
-    _isTouching = NO;
+    _touchMoveDistance = 0;
 }
 
 -(void)cubeTouchManager:(RCCubeTouchManager *)cubeTouchManager NotifyTouchMoveDistance:(float)distance

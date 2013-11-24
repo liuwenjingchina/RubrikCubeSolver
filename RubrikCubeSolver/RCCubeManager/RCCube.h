@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "RCBaseClass.h"
 
 @class
 EAGLContext,
@@ -17,17 +18,17 @@ RCCubeTouchManager,
 RCCubeDrawManager,
 RCBlockService;
 
-@interface RCCube : NSObject
+@interface RCCube : RCBaseClass
 @property (strong, nonatomic) EAGLContext *context;
 
--(void)setCubePosition:(RCPosition)position;
--(void)setCubeRotation:(RCRotation)rotation;
--(void)setCubeRotationSpeed:(RCSpeed)speed;
--(void)commitMove:(RCMoveDescriptor)move;
--(void)drawInRect:(CGRect)rect;
--(void)setVisibility:(BOOL)visibility;
--(BOOL)isVisible;
--(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event;
--(void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event;
--(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event;
+-(void)SetCubePosition:(RCPosition)position;
+-(void)SetCubeRotation:(RCRotation)rotation;
+-(void)SetCubeRotationSpeed:(RCSpeed)speed;
+-(void)CommitMove:(RCMoveDescriptor)move;
+-(void)DrawInRect:(CGRect)rect;
+-(void)SetVisibility:(BOOL)visibility;
+-(BOOL)IsVisible;
+-(void)TouchesBegan:(NSSet *)touches withEvent:(UIEvent *)event;
+-(void)TouchesMoved:(NSSet *)touches withEvent:(UIEvent *)event;
+-(void)TouchesEnded:(NSSet *)touches withEvent:(UIEvent *)event;
 @end

@@ -7,17 +7,19 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "RCBaseClass.h"
+
 @class RCMove;
-@interface RCBlockService : NSObject
+@interface RCBlockService : RCBaseClass
 @property (strong, atomic) RCMove *currentMove;
 
 - (void)setStillPosition:(RCPosition) position AtIndex:(RCIndex) index;
 - (RCPosition)getStillPositionAtIndex:(RCIndex)index;
-- (void)setRotatingPosition:(RCPosition) position AtIndex:(RCIndex) index;
-- (RCPosition)getRotatingPositionAtIndex:(RCIndex)index;
-- (void)setStillRotation:(RCRotation) rotation AtIndex:(RCIndex) index;
-- (RCRotation)getStillRotationAtIndex:(RCIndex)index;
+- (void)setStillRotation:(GLKMatrix4) rotation AtIndex:(RCIndex) index;
+- (GLKMatrix4)getStillRotationAtIndex:(RCIndex)index;
 
 - (BOOL)isRotatingAtIndex:(RCIndex)index;
 - (BOOL)isSetColorNeededAtIndex:(RCIndex)index;
+
+- (void)computeCurrentMove;
 @end

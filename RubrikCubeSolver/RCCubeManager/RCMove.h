@@ -7,8 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
-
-@interface RCMove : NSObject
+#import "RCBaseClass.h"
+@interface RCMove : RCBaseClass
 {
     NSInteger moveID;
     RCMoveDescriptor moveType;
@@ -19,5 +19,5 @@
 @property(atomic)float completeness;
 +(id)moveWithType:(RCMoveDescriptor)moveType1;
 -(id)initWithType:(RCMoveDescriptor)moveType1;
--(RCRotation)rotation;
+-(RCStillRotation)rotation;
 @end

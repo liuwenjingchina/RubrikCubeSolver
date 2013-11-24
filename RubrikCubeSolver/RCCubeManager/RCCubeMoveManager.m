@@ -14,7 +14,6 @@
 @interface RCCubeMoveManager()
 @property (strong, atomic)NSMutableArray *moves;
 -(RCMove *) _queueOutMove;
--(void)_completeMove:(RCMoveDescriptor)move;
 @end
 @implementation RCCubeMoveManager
 +(id)alloc
@@ -48,17 +47,20 @@
 {
     RCMove *move = [RCMove moveWithType:moveType];
     [self.moves insertObject:move atIndex:0];
+    self.CubeService.pendingMoves = [self.moves count];
 }
 
 -(RCMove *)_queueOutMove
 {
     RCMove *move = [self.moves lastObject];
     if ([self.moves count]!=0) [self.moves removeLastObject];
+    self.CubeService.pendingMoves = [self.moves count];
     return move;
 }
--(void)cubeServiceWillStartMove:(RCCubeService *)cubeService
+-(void)cubeServiceStartNewMove:(RCCubeService *)cubeService
 {
-    if(!self.BlockService.currentMove) [self newMove];
+    RCAssert(!self.BlockService.currentMove, @"block service still keeps previous move!!");
+    [self newMove];
 }
 
 -(RCMove *)newMove
@@ -67,6 +69,7 @@
     RCMove *newMove = [self _queueOutMove];
     
     // Update currentMove
+    RCLog(@"start new move 0x%x id %d",newMove.moveType, newMove.moveID);
     [self.BlockService setCurrentMove:newMove];
     
     return newMove;
@@ -75,14 +78,14 @@
 -(void)cubeServiceDidFinishCurrentMove:(RCCubeService *)cubeService
 {
     [self endMove:self.BlockService.currentMove];
-    self.BlockService.currentMove = nil;
 }
 
 -(void)endMove:(RCMove *)endMove
 {
-    [self.BlockService setCurrentMove:nil];
+    RCLog(@"end move 0x%x id %d\n", endMove.moveType, endMove.moveID);
     // Complete Actual Block Rotation
-    [self _completeMove:endMove.moveType];
+    [self.BlockService computeCurrentMove];
+    [self.BlockService setCurrentMove:nil];
 }
 
 -(void)setCurrentMove:(RCMove *)currentMove
@@ -90,9 +93,5 @@
     [self.BlockService setCurrentMove:currentMove];
 }
 
--(void)_completeMove:(RCMoveDescriptor)move
-{
-    
-}
 
 @end

@@ -7,12 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "RCBaseClass.h"
 #import "RCCubeServiceDelegate.h"
 @class RCCubeService,
 RCBlockService,
 RCCubeRotationManager,
 RCMove;
-@interface RCCubeMoveManager : NSObject<RCCubeServiceDelegate>
+@interface RCCubeMoveManager : RCBaseClass<RCCubeServiceDelegate>
 @property (strong, nonatomic) RCCubeRotationManager *cubeRotationManager;
 @property(weak, atomic)RCCubeService *CubeService;
 @property(weak, atomic)RCBlockService *BlockService;

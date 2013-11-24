@@ -20,5 +20,5 @@ typedef enum RCCubeServiceChange {
 -(void)cubeServiceWillDraw:(RCCubeService *)cubeService;
 -(void)cubeServiceDidDraw:(RCCubeService *)cubeService;
 -(void)cubeServiceDidFinishCurrentMove:(RCCubeService *)cubeService;
--(void)cubeServiceWillStartMove:(RCCubeService *)cubeService;
+-(void)cubeServiceStartNewMove:(RCCubeService *)cubeService;
 @end

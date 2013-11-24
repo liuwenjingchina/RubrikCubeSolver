@@ -12,7 +12,7 @@
 // private variables and functions
 @interface RCBlockService()
 {
-    RCBlock _blocks [3][3][3];
+    RCBlock _blocks [27];
 }
 - (void)_setIsSetColorNeeded:(BOOL)needed AtIndex:(RCIndex)index;
 @end
@@ -46,13 +46,10 @@
                 position.y = 1-j;
                 position.z = 1-i;
                 [self setStillPosition:position AtIndex:index];
-                [self setRotatingPosition:position AtIndex:index];
                 
                 // init stillRotation * rotatingRotation
-                RCRotation rotation;
-                rotation.x = 0;
-                rotation.y = 0;
-                rotation.z = 0;
+                GLKMatrix4 rotation = GLKMatrix4MakeTranslation(0, 0, 0);
+                [self setStillRotation:rotation AtIndex:index];
                 
                 // init isSetColorNeeded
                 [self _setIsSetColorNeeded:NO AtIndex:index];
@@ -67,32 +64,23 @@
 
 -(void)setStillPosition:(RCPosition)position AtIndex:(RCIndex)index
 {
-    _blocks[index.i][index.j][index.k].stillPosition = position;
+    _blocks[index.i*9+index.j*3+index.k].stillPosition = position;
 }
 
 -(RCPosition)getStillPositionAtIndex:(RCIndex)index
 {
-    return _blocks[index.i][index.j][index.k].stillPosition;
+    return _blocks[index.i*9+index.j*3+index.k].stillPosition;
 }
 
--(void)setRotatingPosition:(RCPosition)position AtIndex:(RCIndex)index
+
+-(void)setStillRotation:(GLKMatrix4)rotation AtIndex:(RCIndex)index
 {
-    _blocks[index.i][index.j][index.k].rotatingPosition = position;
+    _blocks[index.i*9+index.j*3+index.k].stillRotation = rotation;
 }
 
--(RCPosition)getRotatingPositionAtIndex:(RCIndex)index
+-(GLKMatrix4)getStillRotationAtIndex:(RCIndex)index
 {
-    return _blocks[index.i][index.j][index.k].rotatingPosition;
-}
-
--(void)setStillRotation:(RCRotation)rotation AtIndex:(RCIndex)index
-{
-    _blocks[index.i][index.j][index.k].stillRotation = rotation;
-}
-
--(RCRotation)getStillRotationAtIndex:(RCIndex)index
-{
-    return _blocks[index.i][index.j][index.k].stillRotation;
+    return _blocks[index.i*9+index.j*3+index.k].stillRotation;
 }
 
 - (BOOL)isRotatingAtIndex:(RCIndex)index
@@ -104,12 +92,49 @@
 
 -(BOOL)isSetColorNeededAtIndex:(RCIndex)index
 {
-    return _blocks[index.i][index.j][index.k].isSetColorNeeded;
+    //return _blocks[index.i][index.j][index.k].isSetColorNeeded;
+    return false;
 }
 
 - (void)_setIsSetColorNeeded:(BOOL)needed AtIndex:(RCIndex)index
 {
-    _blocks[index.i][index.j][index.k].isSetColorNeeded = needed;
+    //_blocks[index.i][index.j][index.k].isSetColorNeeded = needed;
 }
 
+-(void)computeCurrentMove
+{
+    /**************************** Back up blocks & Compute Move Rotation ***************************/
+    RCBlock backupBlock [9];
+    int count = 0;
+    for (int i=0; i<27; i++) {
+        // Back up block
+        if([self getBit:[self.currentMove moveType] AtIndex:i]){
+            // Compute move rotation
+            GLKMatrix4 currentRotation = GLKMatrix4MakeRotation(GLKMathDegreesToRadians(90), currentMove.rotation.x, currentMove.rotation.y, currentMove.rotation.z);
+            _blocks[i].stillRotation = GLKMatrix4Multiply(currentRotation, _blocks[i].stillRotation);
+            backupBlock[count++] = (_blocks[i]);
+        }
+    }
+    
+    /**************************** Update Rotation *******************************/
+    count = 0;
+    for (int i=0; i<27; i++) {
+        // Back up block
+        if([self getBit:[self.currentMove moveType] AtIndex:i]){
+            int temp;
+            if ([self getBit:currentMove.moveType AtIndex:30]) {
+                temp = (6-count*3);
+                while (temp < 0 )temp+=10;
+            }
+            else {
+                temp = (2+count*3);
+                while (temp > 8) temp-=10;
+                
+            }
+            
+            _blocks[i].stillRotation = backupBlock[temp].stillRotation;
+            count ++;
+        }
+    }
+}
 @end

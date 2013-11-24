@@ -7,27 +7,35 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "RCBaseClass.h"
 #import "RCBlock.h"
 #import "RCMove.h"
+
 @class RCBlockService,
 RCCubeMoveManager,
 RCCubeRotationManager,
 RCCubeDrawManager;
-@interface RCCubeService : NSObject
+
+
+/*
+ * RCCubeService
+ * Maintains state of the cube
+ */
+@interface RCCubeService : RCBaseClass
 @property RCPosition cubePosition;
 @property RCRotation cubeRotation;
 @property(weak, atomic)RCMove *currentMove;
 @property(strong, atomic)RCBlockService *blockService;
 @property BOOL isTouching;
 @property BOOL visibility;
+@property NSInteger pendingMoves;
+
 -(void)setCubeRotationSpeed:(RCSpeed)cubeRotationSpeed;
 -(RCSpeed)cubeRotationSpeed;
 -(void)addDelegate:(id)object;
 -(void)removeDelegate:(id)object;
-
-//-(RCRotation)currentRotation;
 -(void)notifyCubeWillDraw;
 -(void)notifyCubeDidDraw;
 -(void)notifyCubeDidFinishCurrentMove;
--(void)notifyCubeWillStartMove;
+-(void)notifyCubeStartNewMove;
 @end

@@ -22,8 +22,8 @@
     _frameCounter++;
 #endif
     
-    if ([self.cubeManager isVisible]) {
-        [self.cubeManager drawInRect:rect];
+    if ([self.cubeManager IsVisible]) {
+        [self.cubeManager DrawInRect:rect];
     }
 }
 

@@ -51,11 +51,14 @@
 }
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
+    // Initialization
+    self.CubeService.isTouching = YES;
     [_CubeService setCubeRotationSpeed:0];
     [self _notifyTouchBegin:touches];
     [_touchLocations removeAllObjects];
     [_touchTimes removeAllObjects];
     
+    // Insert TouchLocation and TouchTime
     double CurrentTime = [[NSDate date] timeIntervalSince1970];
     NSNumber *CurrentTimeNumber = [NSNumber numberWithDouble:CurrentTime];
     UITouch *touch = [touches anyObject];
@@ -63,7 +66,6 @@
     NSNumber *xLocationNumber = [[NSNumber alloc] initWithDouble:xLocation];
     [_touchLocations insertObject: xLocationNumber atIndex:0];
     [_touchTimes insertObject:CurrentTimeNumber atIndex:0];
-    self.CubeService.isTouching = YES;
 }
 
 -(void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
@@ -72,47 +74,55 @@
     NSNumber *lastLocationNumber = [_touchLocations objectAtIndex:0];
     CGFloat lastLocationX = [lastLocationNumber floatValue];
     
-    // Current Location
+    // Insert Current Location
     UITouch *currentTouch = [touches anyObject];
     CGPoint currentLocation = [currentTouch locationInView:currentTouch.view];
     NSNumber *currentLocationNumber = [NSNumber numberWithFloat:currentLocation.x];
     [_touchLocations insertObject:currentLocationNumber atIndex:0];
     
-    // Location Difference
-    CGFloat locationDiff = (currentLocation.x - lastLocationX );
-    
-    // Notify move
-    [self _notifyTouchMoveDistance:locationDiff/60];
-    
-    // Current Time
+    // Insert Current Time
     double currentTime = [[NSDate date] timeIntervalSince1970];
     NSNumber *currentTimeNumber = [NSNumber numberWithDouble:currentTime];
     [_touchTimes insertObject:currentTimeNumber atIndex:0];
     
+    // Location Difference
+    CGFloat locationDiff = (currentLocation.x - lastLocationX );
+    
+    // Notify location difference
+    [self _notifyTouchMoveDistance:locationDiff/60];
+
+    // Delete old location and time
     if ([_touchLocations count]>5) [_touchLocations removeLastObject];
     if ([_touchTimes count]>5) [_touchTimes removeLastObject];
 }
 
 -(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
+    // Get time
     NSNumber *lastLocationNumber = [_touchLocations lastObject];
+    CGFloat lastLocation = [lastLocationNumber floatValue];
     UITouch *currentTouch = [touches anyObject];
     CGPoint currentLocation = [currentTouch locationInView:currentTouch.view];
-    CGFloat lastLocationX = [lastLocationNumber floatValue];
     
+    // Get Location
     NSNumber *lastTimeNumber = [_touchTimes lastObject];
     double CurrentTime = [[NSDate date] timeIntervalSince1970];
     NSNumber *CurrentTimeNumber = [NSNumber numberWithDouble:CurrentTime];
     
+    // Calculate Speed
     double startTime, startLocation, endTime, endLocation;
     startTime = [lastTimeNumber doubleValue];
-    startLocation = lastLocationX;
+    startLocation = lastLocation;
     endTime = [CurrentTimeNumber doubleValue];
     endLocation = currentLocation.x;
     double speed = (endLocation - startLocation)/(endTime - startTime)/60;
     [_CubeService setCubeRotationSpeed:speed];
     [self _notifyTouchEnd:touches];
     self.CubeService.isTouching = NO;
+    
+    // Remove touches
+    [_touchLocations removeAllObjects];
+    [_touchTimes removeAllObjects];
 }
 
 -(void)addDelegate:(id)object

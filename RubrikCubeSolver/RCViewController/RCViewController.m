@@ -61,13 +61,21 @@
 {
     [super viewDidLoad];
     [self _setupOpenGL];
-    [_cubeManager setVisibility:YES];
-    [_cubeManager setCubeRotationSpeed:1];
-    [_cubeManager commitMove:RCMoveL];
-    [_cubeManager commitMove:RCMoveL];
-    [_cubeManager commitMove:RCMoveL];
-    [_cubeManager commitMove:RCMoveL];
-    [_cubeManager commitMove:RCMoveL];
+    [_cubeManager SetVisibility:YES];
+    [_cubeManager SetCubeRotationSpeed:1];
+    [_cubeManager CommitMove:RCMoveL];
+    [_cubeManager CommitMove:RCMoveR];
+    [_cubeManager CommitMove:RCMoveU];
+    [_cubeManager CommitMove:RCMoveD];
+    [_cubeManager CommitMove:RCMoveF];
+    [_cubeManager CommitMove:RCMoveB];
+    
+    [_cubeManager CommitMove:RCMoveLP];
+    [_cubeManager CommitMove:RCMoveRP];
+    [_cubeManager CommitMove:RCMoveUP];
+    [_cubeManager CommitMove:RCMoveDP];
+    [_cubeManager CommitMove:RCMoveFP];
+    [_cubeManager CommitMove:RCMoveBP];
     // first time need to clear the screen
     _clearScreen = YES;
 }

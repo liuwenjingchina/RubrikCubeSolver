@@ -140,11 +140,11 @@
     }
 }
 
--(void)notifyCubeWillStartMove
+-(void)notifyCubeStartNewMove
 {
     for (id<RCCubeServiceDelegate>delegate in _Delegates) {
-        if ([delegate respondsToSelector:@selector(cubeServiceWillStartMove:)]){
-            [delegate cubeServiceWillStartMove:self];
+        if ([delegate respondsToSelector:@selector(cubeServiceStartNewMove:)]){
+            [delegate cubeServiceStartNewMove:self];
         }
     }
 }

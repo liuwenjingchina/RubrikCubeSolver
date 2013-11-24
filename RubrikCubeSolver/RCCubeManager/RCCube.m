@@ -25,10 +25,11 @@
 
 + (id)alloc
 {
+    RCLog(@"start allocation");
     // alloc self
-    RCCube *cubeManager = [super alloc];
+    RCCube *cube = [super alloc];
     RCAssert(self, @"alloc failure");
-    if (!cubeManager) return NULL;
+    if (!cube) return NULL;
     
     // alloc cube
     RCCubeService *cubeService = [RCCubeService alloc];
@@ -37,15 +38,17 @@
     RCCubeDrawManager *cubeDrawManager = [RCCubeDrawManager alloc];
 
     // assemble cube
-    [cubeManager setCubeService:cubeService];
-    [cubeManager setCubeMoveManager:cubeMoveManager];
-    [cubeManager setCubeTouchManager:cubeTouchManager];
-    [cubeManager setCubeDrawManager:cubeDrawManager];
-    return cubeManager;
+    [cube setCubeService:cubeService];
+    [cube setCubeMoveManager:cubeMoveManager];
+    [cube setCubeTouchManager:cubeTouchManager];
+    [cube setCubeDrawManager:cubeDrawManager];
+    RCLog(@"finish allocation\n");
+    return cube;
 }
 
 -(id)init
 {
+    RCLog(@"start initialization");
     // init self
     self = [super init];
     RCAssert(self, @"RCCubeManager not super init");
@@ -69,64 +72,70 @@
 
     [self.cubeDrawManager setBlockService:_BlockService];
     [self.cubeDrawManager setCubeService:self.cubeService];
-    //[self.cubeDrawManager setCubeRotationManager:_CubeRotationManager];
 
     [_CubeRotationManager setBlockService:_BlockService];
     [_CubeRotationManager setCubeService:self.cubeService];
-    //[_CubeRotationManager setCubeMoveManager:self.cubeMoveManager];
     
     [self.cubeTouchManager setCubeService:self.cubeService];
     [self.cubeTouchManager addDelegate:self.CubeRotationManager];
     
     [self.cubeMoveManager setBlockService:self.BlockService];
+    [self.cubeMoveManager setCubeService:self.cubeService];
+    
+    RCLog(@"finish initialization\n");
     return self;
 }
 
--(void)setCubePosition:(RCPosition)position
+-(void)SetCubePosition:(RCPosition)position
 {
     [self.cubeService setCubePosition:position];
 }
 
--(void)setCubeRotation:(RCRotation)rotation
+-(void)SetCubeRotation:(RCRotation)rotation
 {
     [self.cubeService setCubeRotation:rotation];
 }
 
--(void)setCubeRotationSpeed:(RCSpeed)speed
+-(void)SetCubeRotationSpeed:(RCSpeed)speed
 {
     [self.cubeService setCubeRotationSpeed:speed];
 }
 
--(void)setVisibility:(BOOL)visibility
+-(void)SetVisibility:(BOOL)visibility
 {
+    RCLog(@"visibility %d\n", visibility);
     [self.cubeService setVisibility:visibility];
 }
 
--(BOOL)isVisible
+-(BOOL)IsVisible
 {
     return [self.cubeService visibility];
 }
 
--(void)commitMove:(RCMoveDescriptor)move
+-(void)CommitMove:(RCMoveDescriptor)move
 {
+    RCLog(@"start commitMove 0x%x", move);
     [self.cubeMoveManager queueInMove:move];
+    RCLog(@"finish commitMove 0x%x\n", move);
 }
 
--(void)drawInRect:(CGRect)rect
+-(void)DrawInRect:(CGRect)rect
 {
     [self.cubeDrawManager drawInRect:rect];
 }
 
--(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+-(void)TouchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
+    RCLog(@"start touch");
     [self.cubeTouchManager touchesBegan:touches withEvent:event];
 }
--(void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
+-(void)TouchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
 {
     [self.cubeTouchManager touchesMoved:touches withEvent:event];
 }
--(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
+-(void)TouchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
+    RCLog(@"end touch\n");
     [self.cubeTouchManager touchesEnded:touches withEvent:event];
 }
 

@@ -36,15 +36,23 @@
     return currentID++;
 }
 
--(RCRotation)rotation
+-(RCStillRotation)rotation
 {
-    RCRotation rotation;
+    RCStillRotation rotation;
+    int clockwise = [self getBit:self.moveType AtIndex:31];
+    if (clockwise != 1) clockwise = -1;
     switch (self.moveType) {
         case RCMoveStill:
             rotation = [self makeRotationX:0 Y:0 Z:0];
             break;
-        case RCMoveL:
-            rotation = [self makeRotationX:-1 Y:0 Z:0];
+        case RCMoveL:case RCMoveLP:case RCMoveR:case RCMoveRP:
+            rotation = [self makeRotationX:clockwise Y:0 Z:0];
+            break;
+        case RCMoveU:case RCMoveUP:case RCMoveD:case RCMoveDP:
+            rotation = [self makeRotationX:0 Y:clockwise Z:0];
+            break;
+        case RCMoveF:case RCMoveFP:case RCMoveB:case RCMoveBP:
+            rotation = [self makeRotationX:0 Y:0 Z:clockwise];
             break;
         default:
             RCAssert(0, @"No such move type %d",self.moveType);

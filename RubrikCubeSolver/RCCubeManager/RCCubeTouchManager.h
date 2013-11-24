@@ -7,8 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "RCBaseClass.h"
 @class RCCubeService;
-@interface RCCubeTouchManager : NSObject
+@interface RCCubeTouchManager : RCBaseClass
 @property (weak, atomic)RCCubeService *CubeService;
 @property BOOL isTouching;
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event;
